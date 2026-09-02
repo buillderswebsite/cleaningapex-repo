@@ -75,7 +75,7 @@ const jsonLd = {
     "Professional domestic and commercial cleaning services across London and surrounding areas.",
   url: "https://cleaningapex.co.uk",
   telephone: "020 1234 5678",
-  email: "info@cleaningapex.co.uk",
+  email: "info@cleaningapexfacillities.co.uk",
   address: {
     "@type": "PostalAddress",
     streetAddress: "123 Business Park",

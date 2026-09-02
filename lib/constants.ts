@@ -4,7 +4,7 @@ export const COMPANY_INFO = {
   tagline: "At the Peak of Cleanliness",
   phone: "020 1234 5678",
   whatsapp: "44 7123 456789",
-  email: "info@cleaningapex.co.uk",
+  email: "info@cleaningapexfacillities.co.uk",
   address: {
     street: "123 Business Park",
     city: "London",
