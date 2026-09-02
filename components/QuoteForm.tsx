@@ -40,8 +40,6 @@ const addOnOptions = [
   { id: "windows-inside", name: "Inside Windows", price: 30 },
   { id: "balcony", name: "Balcony/Patio", price: 30 },
   { id: "extra-bathroom", name: "Extra Bathroom", price: 35 },
-  { id: "ironing", name: "Ironing (per hour)", price: 20 },
-  { id: "laundry", name: "Laundry Load", price: 15 },
 ];
 
 const carpetOptions = [
@@ -49,12 +47,9 @@ const carpetOptions = [
   { id: "carpet-2room", name: "2 Rooms", price: 75 },
   { id: "carpet-3room", name: "3 Rooms", price: 99 },
   { id: "carpet-4room", name: "4 Rooms", price: 129 },
-  { id: "carpet-5room", name: "5 Rooms", price: 155 },
-  { id: "carpet-stairs", name: "Staircase", price: 45 },
   { id: "sofa-2seat", name: "2-Seater Sofa", price: 65 },
   { id: "sofa-3seat", name: "3-Seater Sofa", price: 85 },
   { id: "sofa-corner", name: "Corner Sofa", price: 120 },
-  { id: "armchair", name: "Armchair", price: 40 },
 ];
 
 export default function QuoteForm() {
@@ -132,14 +127,21 @@ export default function QuoteForm() {
     return selectedAddOns.map(id => {
       const addon = addOnOptions.find(a => a.id === id);
       return addon ? `${addon.name} (£${addon.price})` : "";
-    }).filter(Boolean).join(", ");
+    }).filter(Boolean).join(", ") || "None";
   };
 
   const getSelectedCarpetOptionsText = () => {
     return selectedCarpetOptions.map(id => {
       const option = carpetOptions.find(o => o.id === id);
       return option ? `${option.name} (£${option.price})` : "";
-    }).filter(Boolean).join(", ");
+    }).filter(Boolean).join(", ") || "None";
+  };
+
+  const getBedroomsLabel = () => {
+    if (!needsBedrooms || !bedrooms) return "";
+    const pricing = bedroomPricing[selectedService as keyof typeof bedroomPricing];
+    const bedroomOption = pricing?.find(p => p.beds === bedrooms);
+    return bedroomOption ? `${bedroomOption.label} (£${bedroomOption.price})` : "";
   };
 
   if (formspreeState.succeeded) {
@@ -152,8 +154,10 @@ export default function QuoteForm() {
           Booking Request Received!
         </h3>
         <p className="text-gray-600 mb-4">
-          We&apos;ve received your booking request for an estimated total of{" "}
-          <span className="font-bold text-primary">£{estimatedPrice}</span>.
+          We&apos;ve received your booking request
+          {estimatedPrice > 0 && (
+            <> for an estimated total of <span className="font-bold text-primary">£{estimatedPrice}</span></>
+          )}.
         </p>
         <p className="text-gray-600">
           We&apos;ll confirm availability and final pricing within 24 hours.
@@ -181,86 +185,72 @@ export default function QuoteForm() {
           </div>
         </div>
         <p className="text-blue-200 text-sm mt-2">
-          * Final price confirmed after booking. Prices may vary based on property condition.
+          * Final price confirmed after booking
         </p>
       </div>
 
       {/* Hidden fields for form submission */}
       <input type="hidden" name="estimatedPrice" value={`£${estimatedPrice}`} />
+      <input type="hidden" name="selectedService" value={currentService?.name || ""} />
+      <input type="hidden" name="propertySize" value={getBedroomsLabel()} />
+      <input type="hidden" name="hours" value={currentService?.unit === "/hour" ? `${hours} hours` : "N/A"} />
       <input type="hidden" name="selectedAddOns" value={getSelectedAddOnsText()} />
-      <input type="hidden" name="selectedCarpetOptions" value={getSelectedCarpetOptionsText()} />
+      <input type="hidden" name="carpetUpholsteryItems" value={getSelectedCarpetOptionsText()} />
 
       {/* Service Selection */}
       <div className="bg-gray-50 rounded-xl p-6">
-        <h3 className="font-semibold text-lg text-gray-900 mb-4">1. Select Your Service *</h3>
+        <h3 className="font-semibold text-lg text-gray-900 mb-4">1. Select Your Service</h3>
         <div className="grid sm:grid-cols-2 gap-3">
           {serviceOptions.map((service) => (
-            <label
+            <button
+              type="button"
               key={service.id}
-              className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+              onClick={() => {
+                setSelectedService(service.id);
+                setBedrooms("");
+                setSelectedCarpetOptions([]);
+              }}
+              className={`flex flex-col items-start p-4 rounded-lg border-2 text-left transition-all ${
                 selectedService === service.id
                   ? "border-primary bg-primary/5"
                   : "border-gray-200 hover:border-primary/50 bg-white"
               }`}
             >
-              <input
-                type="radio"
-                name="service"
-                value={service.name}
-                checked={selectedService === service.id}
-                onChange={() => {
-                  setSelectedService(service.id);
-                  setBedrooms("");
-                  setSelectedCarpetOptions([]);
-                }}
-                className="w-5 h-5 text-primary"
-                required
-              />
-              <div className="flex-1">
-                <span className="font-medium text-gray-900">{service.name}</span>
-                {service.price > 0 && (
-                  <span className="block text-sm text-primary font-semibold">
-                    £{service.price}{service.unit} (min {service.minHours}hrs)
-                  </span>
-                )}
-                {service.price === 0 && (
-                  <span className="block text-sm text-gray-500">
-                    Price based on property size
-                  </span>
-                )}
-              </div>
-            </label>
+              <span className="font-medium text-gray-900">{service.name}</span>
+              {service.price > 0 && (
+                <span className="text-sm text-primary font-semibold">
+                  £{service.price}{service.unit} (min {service.minHours}hrs)
+                </span>
+              )}
+              {service.price === 0 && (
+                <span className="text-sm text-gray-500">
+                  Price based on selection
+                </span>
+              )}
+            </button>
           ))}
         </div>
-        <ValidationError prefix="Service" field="service" errors={formspreeState.errors} className="text-red-500 text-sm mt-2" />
       </div>
 
       {/* Bedrooms Selection - for fixed price services */}
       {needsBedrooms && (
         <div className="bg-gray-50 rounded-xl p-6">
-          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Property Size *</h3>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Property Size</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {bedroomPricing[selectedService as keyof typeof bedroomPricing]?.map((option) => (
-              <label
+              <button
+                type="button"
                 key={option.beds}
-                className={`flex flex-col items-center p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                onClick={() => setBedrooms(option.beds)}
+                className={`flex flex-col items-center p-4 rounded-lg border-2 transition-all ${
                   bedrooms === option.beds
                     ? "border-primary bg-primary/5"
                     : "border-gray-200 hover:border-primary/50 bg-white"
                 }`}
               >
-                <input
-                  type="radio"
-                  name="bedrooms"
-                  value={option.label}
-                  checked={bedrooms === option.beds}
-                  onChange={() => setBedrooms(option.beds)}
-                  className="sr-only"
-                  required={needsBedrooms}
-                />
                 <span className="font-medium text-gray-900">{option.label}</span>
                 <span className="text-lg font-bold text-primary">£{option.price}</span>
-              </label>
+              </button>
             ))}
           </div>
         </div>
@@ -269,7 +259,7 @@ export default function QuoteForm() {
       {/* Hours Selection - for hourly services */}
       {currentService?.unit === "/hour" && (
         <div className="bg-gray-50 rounded-xl p-6">
-          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. How Many Hours? *</h3>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. How Many Hours?</h3>
           <div className="flex items-center gap-4">
             <input
               type="range"
@@ -283,9 +273,8 @@ export default function QuoteForm() {
               {hours} hrs
             </div>
           </div>
-          <input type="hidden" name="hours" value={`${hours} hours`} />
           <p className="text-sm text-gray-500 mt-2">
-            Minimum {currentService.minHours} hours. £{currentService.price}/hour = £{currentService.price * hours} total
+            £{currentService.price}/hour = £{currentService.price * hours} total
           </p>
         </div>
       )}
@@ -293,7 +282,7 @@ export default function QuoteForm() {
       {/* Carpet & Upholstery Options */}
       {isCarpetService && (
         <div className="bg-gray-50 rounded-xl p-6">
-          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Items to Clean *</h3>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Items to Clean</h3>
           <div className="grid sm:grid-cols-2 gap-3">
             {carpetOptions.map((option) => (
               <label
@@ -324,7 +313,7 @@ export default function QuoteForm() {
       {(selectedService && !isCarpetService) && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-2">Optional Add-Ons</h3>
-          <p className="text-gray-500 text-sm mb-4">Select any additional services you need</p>
+          <p className="text-gray-500 text-sm mb-4">Select any additional services</p>
           <div className="grid sm:grid-cols-2 gap-3">
             {addOnOptions.map((addon) => (
               <label
@@ -403,9 +392,9 @@ export default function QuoteForm() {
 
           <div>
             <label htmlFor="area" className={labelClasses}>
-              Your Area *
+              Your Area
             </label>
-            <select id="area" name="area" required className={inputClasses}>
+            <select id="area" name="area" className={inputClasses}>
               <option value="">Select your area</option>
               <optgroup label="London Boroughs">
                 {SERVICE_AREAS.london.slice(0, 15).map((area) => (
@@ -427,13 +416,12 @@ export default function QuoteForm() {
 
         <div className="mt-6">
           <label htmlFor="address" className={labelClasses}>
-            Property Address *
+            Property Address
           </label>
           <input
             type="text"
             id="address"
             name="address"
-            required
             placeholder="123 Example Street, London"
             className={inputClasses}
           />
@@ -448,7 +436,6 @@ export default function QuoteForm() {
               type="date"
               id="preferredDate"
               name="preferredDate"
-              min={new Date().toISOString().split('T')[0]}
               className={inputClasses}
             />
           </div>
@@ -458,13 +445,10 @@ export default function QuoteForm() {
               Preferred Time
             </label>
             <select id="preferredTime" name="preferredTime" className={inputClasses}>
-              <option value="">Select time</option>
-              <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
-              <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
-              <option value="12:00 PM - 2:00 PM">12:00 PM - 2:00 PM</option>
-              <option value="2:00 PM - 4:00 PM">2:00 PM - 4:00 PM</option>
-              <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
               <option value="Flexible">Flexible</option>
+              <option value="Morning (8am-12pm)">Morning (8am-12pm)</option>
+              <option value="Afternoon (12pm-4pm)">Afternoon (12pm-4pm)</option>
+              <option value="Evening (4pm-7pm)">Evening (4pm-7pm)</option>
             </select>
           </div>
         </div>
@@ -490,7 +474,7 @@ export default function QuoteForm() {
           <div className="space-y-2 text-sm">
             {selectedService && (
               <div className="flex justify-between">
-                <span>{serviceOptions.find(s => s.id === selectedService)?.name}</span>
+                <span>{currentService?.name}</span>
                 <span className="font-medium">
                   {currentService?.unit === "/hour"
                     ? `£${currentService.price} x ${hours}hrs = £${currentService.price * hours}`
@@ -530,18 +514,18 @@ export default function QuoteForm() {
       {/* Submit button */}
       <button
         type="submit"
-        disabled={formspreeState.submitting || estimatedPrice === 0}
+        disabled={formspreeState.submitting}
         className="w-full bg-accent hover:bg-accent-600 text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg"
       >
         {formspreeState.submitting ? (
           <>
             <Loader2 size={20} className="animate-spin" />
-            Processing...
+            Sending...
           </>
         ) : (
           <>
             <Send size={20} />
-            Book Now - £{estimatedPrice}
+            {estimatedPrice > 0 ? `Request Booking - £${estimatedPrice}` : "Request Quote"}
           </>
         )}
       </button>
