@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useForm, ValidationError } from "@formspree/react";
+import { useState, useEffect, FormEvent } from "react";
 import { Send, CheckCircle, Loader2, Calculator } from "lucide-react";
 import { SERVICE_AREAS } from "@/lib/constants";
 
@@ -53,7 +52,10 @@ const carpetOptions = [
 ];
 
 export default function QuoteForm() {
-  const [formspreeState, handleFormspreeSubmit] = useForm("xvkorqwn");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
   const [selectedService, setSelectedService] = useState("");
   const [bedrooms, setBedrooms] = useState("");
   const [hours, setHours] = useState(3);
@@ -62,7 +64,6 @@ export default function QuoteForm() {
   const [estimatedPrice, setEstimatedPrice] = useState(0);
 
   const currentService = serviceOptions.find(s => s.id === selectedService);
-  const isFixedPrice = currentService?.unit === "fixed";
   const isCarpetService = selectedService === "carpet";
   const needsBedrooms = selectedService === "deep-cleaning" || selectedService === "end-of-tenancy";
 
@@ -86,13 +87,11 @@ export default function QuoteForm() {
       }
     }
 
-    // Add add-ons
     selectedAddOns.forEach(addonId => {
       const addon = addOnOptions.find(a => a.id === addonId);
       if (addon) total += addon.price;
     });
 
-    // Add carpet options
     selectedCarpetOptions.forEach(optionId => {
       const option = carpetOptions.find(o => o.id === optionId);
       if (option) total += option.price;
@@ -117,12 +116,6 @@ export default function QuoteForm() {
     );
   };
 
-  const inputClasses =
-    "w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all";
-  const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
-  const checkboxClasses = "w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary";
-
-  // Get selected items for form submission
   const getSelectedAddOnsText = () => {
     return selectedAddOns.map(id => {
       const addon = addOnOptions.find(a => a.id === id);
@@ -138,36 +131,93 @@ export default function QuoteForm() {
   };
 
   const getBedroomsLabel = () => {
-    if (!needsBedrooms || !bedrooms) return "";
+    if (!needsBedrooms || !bedrooms) return "N/A";
     const pricing = bedroomPricing[selectedService as keyof typeof bedroomPricing];
     const bedroomOption = pricing?.find(p => p.beds === bedrooms);
-    return bedroomOption ? `${bedroomOption.label} (£${bedroomOption.price})` : "";
+    return bedroomOption ? `${bedroomOption.label} (£${bedroomOption.price})` : "N/A";
   };
 
-  if (formspreeState.succeeded) {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+
+    // Add calculated fields
+    formData.set("selectedService", currentService?.name || "Not selected");
+    formData.set("propertySize", getBedroomsLabel());
+    formData.set("hoursBooked", currentService?.unit === "/hour" ? `${hours} hours` : "N/A");
+    formData.set("selectedAddOns", getSelectedAddOnsText());
+    formData.set("carpetUpholsteryItems", getSelectedCarpetOptionsText());
+    formData.set("estimatedTotal", `£${estimatedPrice}`);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xvkorqwn", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const data = await response.json();
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const inputClasses =
+    "w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all";
+  const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
+  const checkboxClasses = "w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary";
+
+  if (isSubmitted) {
     return (
-      <div className="bg-accent/10 rounded-2xl p-8 text-center">
+      <div className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-200">
         <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle size={32} className="text-white" />
         </div>
         <h3 className="font-bold text-2xl text-gray-900 mb-2">
-          Booking Request Received!
+          Request Received
         </h3>
-        <p className="text-gray-600 mb-4">
-          We&apos;ve received your booking request
-          {estimatedPrice > 0 && (
-            <> for an estimated total of <span className="font-bold text-primary">£{estimatedPrice}</span></>
-          )}.
+        <p className="text-gray-600 mb-2">
+          Thank you for your booking request.
         </p>
-        <p className="text-gray-600">
-          We&apos;ll confirm availability and final pricing within 24 hours.
+        {estimatedPrice > 0 && (
+          <p className="text-gray-600 mb-4">
+            Estimated total: <span className="font-bold text-primary">£{estimatedPrice}</span>
+          </p>
+        )}
+        <p className="text-gray-600 mb-6">
+          We will confirm availability and final pricing within 24 hours.
         </p>
+        <button
+          onClick={() => {
+            setIsSubmitted(false);
+            setSelectedService("");
+            setBedrooms("");
+            setHours(3);
+            setSelectedAddOns([]);
+            setSelectedCarpetOptions([]);
+          }}
+          className="text-primary font-medium hover:underline"
+        >
+          Submit another request
+        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleFormspreeSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {/* Price Estimate Banner */}
       <div className="bg-primary text-white rounded-xl p-6 sticky top-20 z-20 shadow-lg">
         <div className="flex items-center justify-between">
@@ -185,17 +235,15 @@ export default function QuoteForm() {
           </div>
         </div>
         <p className="text-blue-200 text-sm mt-2">
-          * Final price confirmed after booking
+          Final price confirmed after booking
         </p>
       </div>
 
-      {/* Hidden fields for form submission */}
-      <input type="hidden" name="estimatedPrice" value={`£${estimatedPrice}`} />
-      <input type="hidden" name="selectedService" value={currentService?.name || ""} />
-      <input type="hidden" name="propertySize" value={getBedroomsLabel()} />
-      <input type="hidden" name="hours" value={currentService?.unit === "/hour" ? `${hours} hours` : "N/A"} />
-      <input type="hidden" name="selectedAddOns" value={getSelectedAddOnsText()} />
-      <input type="hidden" name="carpetUpholsteryItems" value={getSelectedCarpetOptionsText()} />
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {error}
+        </div>
+      )}
 
       {/* Service Selection */}
       <div className="bg-gray-50 rounded-xl p-6">
@@ -232,7 +280,7 @@ export default function QuoteForm() {
         </div>
       </div>
 
-      {/* Bedrooms Selection - for fixed price services */}
+      {/* Bedrooms Selection */}
       {needsBedrooms && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Property Size</h3>
@@ -256,7 +304,7 @@ export default function QuoteForm() {
         </div>
       )}
 
-      {/* Hours Selection - for hourly services */}
+      {/* Hours Selection */}
       {currentService?.unit === "/hour" && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-4">2. How Many Hours?</h3>
@@ -279,7 +327,7 @@ export default function QuoteForm() {
         </div>
       )}
 
-      {/* Carpet & Upholstery Options */}
+      {/* Carpet Options */}
       {isCarpetService && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-4">2. Select Items to Clean</h3>
@@ -309,7 +357,7 @@ export default function QuoteForm() {
         </div>
       )}
 
-      {/* Add-ons - show for relevant services */}
+      {/* Add-ons */}
       {(selectedService && !isCarpetService) && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-2">Optional Add-Ons</h3>
@@ -357,7 +405,6 @@ export default function QuoteForm() {
               placeholder="John Smith"
               className={inputClasses}
             />
-            <ValidationError prefix="Name" field="name" errors={formspreeState.errors} className="text-red-500 text-sm mt-1" />
           </div>
 
           <div>
@@ -372,7 +419,6 @@ export default function QuoteForm() {
               placeholder="john@example.com"
               className={inputClasses}
             />
-            <ValidationError prefix="Email" field="email" errors={formspreeState.errors} className="text-red-500 text-sm mt-1" />
           </div>
 
           <div>
@@ -387,7 +433,6 @@ export default function QuoteForm() {
               placeholder="07123 456789"
               className={inputClasses}
             />
-            <ValidationError prefix="Phone" field="phone" errors={formspreeState.errors} className="text-red-500 text-sm mt-1" />
           </div>
 
           <div>
@@ -469,7 +514,7 @@ export default function QuoteForm() {
 
       {/* Price Summary */}
       {estimatedPrice > 0 && (
-        <div className="bg-accent/10 border-2 border-accent/30 rounded-xl p-6">
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-4">Booking Summary</h3>
           <div className="space-y-2 text-sm">
             {selectedService && (
@@ -503,9 +548,9 @@ export default function QuoteForm() {
                 </div>
               );
             })}
-            <div className="border-t border-accent/30 pt-2 mt-2 flex justify-between text-lg font-bold">
+            <div className="border-t border-gray-300 pt-2 mt-2 flex justify-between text-lg font-bold">
               <span>Estimated Total</span>
-              <span className="text-accent">£{estimatedPrice}</span>
+              <span className="text-primary">£{estimatedPrice}</span>
             </div>
           </div>
         </div>
@@ -514,13 +559,13 @@ export default function QuoteForm() {
       {/* Submit button */}
       <button
         type="submit"
-        disabled={formspreeState.submitting}
-        className="w-full bg-accent hover:bg-accent-600 text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg"
+        disabled={isSubmitting}
+        className="w-full bg-primary hover:bg-primary-600 text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg"
       >
-        {formspreeState.submitting ? (
+        {isSubmitting ? (
           <>
             <Loader2 size={20} className="animate-spin" />
-            Sending...
+            Sending Request...
           </>
         ) : (
           <>
@@ -531,7 +576,7 @@ export default function QuoteForm() {
       </button>
 
       <p className="text-sm text-gray-500 text-center">
-        We&apos;ll confirm availability and final pricing within 24 hours. No payment required now.
+        We will confirm availability and final pricing within 24 hours. No payment required now.
       </p>
     </form>
   );
