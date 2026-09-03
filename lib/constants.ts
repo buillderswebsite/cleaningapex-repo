@@ -3,7 +3,7 @@ export const COMPANY_INFO = {
   shortName: "Cleaning Apex",
   tagline: "At the Peak of Cleanliness",
   phone: "020 1234 5678",
-  whatsapp: "44 7123 456789",
+  whatsapp: "44 7960691109",
   email: "info@cleaningapexfacillities.co.uk",
   address: {
     street: "123 Business Park",
