@@ -34,9 +34,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Cleaning Apex & Facility Services"
-              width={180}
-              height={60}
-              className="h-12 md:h-14 w-auto"
+              width={220}
+              height={70}
+              className="h-14 md:h-16 lg:h-18 w-auto"
               priority
             />
           </Link>

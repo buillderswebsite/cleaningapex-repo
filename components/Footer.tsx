@@ -23,13 +23,13 @@ export default function Footer() {
           <div>
             <div className="mb-6">
               <Link href="/" className="inline-block">
-                <div className="bg-white rounded-lg p-3 inline-block">
+                <div className="bg-white rounded-lg p-4 inline-block">
                   <Image
                     src="/logo.png"
                     alt="Cleaning Apex & Facility Services"
-                    width={160}
-                    height={50}
-                    className="h-10 w-auto"
+                    width={200}
+                    height={60}
+                    className="h-12 md:h-14 w-auto"
                   />
                 </div>
               </Link>
