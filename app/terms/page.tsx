@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: "Terms & Conditions",
   description:
-    "Terms and conditions for Cleaning Apex & Facility Services Limited. Read our service agreement, cancellation policy, and legal terms.",
+    "Terms and Conditions for Cleaning Apex & Facility Services Limited. Read our service agreement, cancellation policy, and legal terms.",
 };
 
 export default function TermsPage() {
-  const lastUpdated = "1 September 2026";
+  const lastUpdated = "September 2026";
 
   return (
     <>
       {/* Page Header */}
       <section className="bg-gradient-to-br from-primary to-primary-700 py-16">
         <div className="container-custom text-center">
-          <h1 className="heading-1 text-white mb-4">Terms of Service</h1>
-          <p className="text-blue-100">Last updated: {lastUpdated}</p>
+          <h1 className="heading-1 text-white mb-4">Terms & Conditions</h1>
+          <p className="text-blue-100">Cleaning Apex & Facility Services Ltd</p>
         </div>
       </section>
 
@@ -27,339 +26,280 @@ export default function TermsPage() {
           <div className="max-w-4xl mx-auto prose prose-gray prose-lg">
 
             {/* Introduction */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
+            <div className="mb-10">
+              <p className="text-gray-600 leading-relaxed">
+                These Terms & Conditions apply to cleaning services provided by Cleaning Apex & Facility Services Ltd.
+                By booking a service with us, you agree to these terms.
+              </p>
+            </div>
+
+            {/* Section 1 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Bookings and Deposits</h2>
               <p className="text-gray-600 mb-4">
-                These Terms of Service (&quot;Terms&quot;) govern your use of the cleaning and facility
-                services provided by {COMPANY_INFO.name} (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;, or &quot;the Company&quot;),
-                a company registered in England and Wales.
+                A <strong>25% deposit</strong> is required to secure one-off cleaning bookings, including Deep Cleaning and End of Tenancy Cleaning.
               </p>
               <p className="text-gray-600 mb-4">
-                By booking our services, you (&quot;the Client&quot;, &quot;you&quot;, or &quot;your&quot;) agree to be bound
-                by these Terms. Please read them carefully before making a booking.
+                A booking is not confirmed until the required deposit has been received and confirmation has been provided by Cleaning Apex & Facility Services Ltd.
+              </p>
+              <p className="text-gray-600 mb-4">
+                The remaining balance is due on completion of the cleaning service unless otherwise agreed in writing.
               </p>
               <p className="text-gray-600">
-                These Terms are compliant with the Consumer Rights Act 2015, the Consumer Contracts
-                (Information, Cancellation and Additional Charges) Regulations 2013, UK GDPR, and
-                the Data Protection Act 2018.
+                Regular domestic and commercial cleaning arrangements may have different payment terms, which will be confirmed separately.
               </p>
             </div>
 
-            {/* Definitions */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Definitions</h2>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li><strong>&quot;Services&quot;</strong> means any cleaning, maintenance, or facility services we provide.</li>
-                <li><strong>&quot;Booking&quot;</strong> means a confirmed appointment for Services.</li>
-                <li><strong>&quot;Property&quot;</strong> means the premises where Services are to be performed.</li>
-                <li><strong>&quot;Quote&quot;</strong> means our written estimate for the cost of Services.</li>
-                <li><strong>&quot;Working Day&quot;</strong> means Monday to Friday, excluding UK public holidays.</li>
-              </ul>
-            </div>
-
-            {/* Service Agreement */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Service Agreement</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">3.1 Booking and Confirmation</h3>
+            {/* Section 2 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Cancellations and Rescheduling</h2>
               <p className="text-gray-600 mb-4">
-                A binding contract is formed when we confirm your booking in writing (including email).
-                All bookings are subject to availability. We reserve the right to decline any booking
-                at our discretion.
+                We understand that plans can change.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">3.2 Quotations</h3>
               <p className="text-gray-600 mb-4">
-                Quotes are valid for 30 days from the date of issue unless otherwise stated.
-                Prices quoted are based on the information you provide. If the actual scope of work
-                differs significantly, we reserve the right to adjust the price accordingly, with
-                your prior agreement.
+                Customers should provide at least <strong>48 hours&apos; notice</strong> if they need to cancel or reschedule a booking.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">3.3 Service Standards</h3>
               <p className="text-gray-600 mb-4">
-                We commit to providing Services with reasonable care and skill in accordance with
-                the Consumer Rights Act 2015. Our cleaning standards comply with British Institute
-                of Cleaning Science (BICSc) guidelines and relevant health and safety regulations.
+                Where sufficient notice is provided, we may allow the deposit to be transferred to another available booking date.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where a customer cancels with less than 48 hours&apos; notice, we may retain some or all of the deposit to cover reasonable losses resulting from the cancellation, subject to applicable consumer law.
+              </p>
+              <p className="text-gray-600">
+                Where applicable, nothing in these Terms & Conditions affects a customer&apos;s statutory cancellation or other consumer rights.
               </p>
             </div>
 
-            {/* Access and Property */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Access and Property</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">4.1 Property Access</h3>
+            {/* Section 3 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Cancellation by Cleaning Apex & Facility Services Ltd</h2>
               <p className="text-gray-600 mb-4">
-                You must ensure we have safe and reasonable access to the Property at the agreed time.
-                If access is not possible, a cancellation fee may apply (see Section 6).
+                In the unlikely event that we need to cancel a confirmed booking, we will offer an alternative date where possible.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">4.2 Key Holding</h3>
               <p className="text-gray-600 mb-4">
-                If you provide us with keys or access codes, we will store them securely and use them
-                only for the purpose of delivering Services. Keys are held at your own risk, though
-                we take reasonable precautions to ensure their security.
+                If a suitable alternative cannot be agreed, any payment made for services that have not been provided will be refunded.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">4.3 Property Condition</h3>
-              <p className="text-gray-600 mb-4">
-                You warrant that the Property is safe for our staff to work in. You must inform us
-                of any hazards, including but not limited to: pest infestations, structural damage,
-                hazardous materials (e.g., asbestos), or any conditions that may affect the health
-                and safety of our team.
+              <p className="text-gray-600">
+                We are not responsible for indirect losses arising from circumstances reasonably outside our control.
               </p>
             </div>
 
-            {/* Payment Terms */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Payment Terms</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">5.1 Pricing</h3>
+            {/* Section 4 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Access to the Property</h2>
               <p className="text-gray-600 mb-4">
-                All prices are quoted in British Pounds Sterling (GBP) and include VAT where applicable.
-                We are VAT registered and will provide VAT invoices upon request.
+                The customer is responsible for ensuring that our cleaners can access the property at the agreed time.
               </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">5.2 Payment Methods</h3>
               <p className="text-gray-600 mb-4">
-                We accept payment by bank transfer, debit card, credit card, and other methods as
-                communicated at the time of booking. Payment processing is handled securely in
-                compliance with PCI DSS standards.
+                Keys, access codes or other access arrangements should be agreed before the appointment.
               </p>
+              <p className="text-gray-600">
+                If our team cannot gain access to the property at the agreed time, the booking may be treated as a late cancellation and a charge may apply to cover reasonable costs incurred.
+              </p>
+            </div>
 
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">5.3 Payment Schedule</h3>
+            {/* Section 5 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Customer Responsibilities</h2>
+              <p className="text-gray-600 mb-4">
+                Customers should inform us before the clean about:
+              </p>
               <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li><strong>One-off Services:</strong> Payment is due upon completion unless otherwise agreed.</li>
-                <li><strong>Regular Services:</strong> Payment is due monthly in advance or as agreed in your service contract.</li>
-                <li><strong>Commercial Contracts:</strong> Payment terms as specified in your individual agreement (typically 14-30 days).</li>
+                <li>Fragile, valuable or damaged items.</li>
+                <li>Surfaces requiring specialist cleaning products or methods.</li>
+                <li>Areas that should not be cleaned.</li>
+                <li>Known hazards within the property.</li>
+                <li>Any access, parking or building restrictions that could affect the service.</li>
               </ul>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">5.4 Late Payment</h3>
-              <p className="text-gray-600 mb-4">
-                We reserve the right to charge interest on overdue amounts at 8% above the Bank of
-                England base rate, in accordance with the Late Payment of Commercial Debts (Interest)
-                Act 1998. We may also suspend Services until payment is received.
+              <p className="text-gray-600">
+                We may decline work that our cleaners reasonably consider unsafe.
               </p>
             </div>
 
-            {/* Cancellation Policy */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Cancellation and Rescheduling</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">6.1 Your Right to Cancel</h3>
+            {/* Section 6 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Cleaning Equipment and Products</h2>
               <p className="text-gray-600 mb-4">
-                Under the Consumer Contracts Regulations 2013, you have the right to cancel a booking
-                within 14 days of making it, provided Services have not yet commenced. To exercise this
-                right, contact us in writing.
+                Unless otherwise agreed, Cleaning Apex & Facility Services Ltd will provide the standard cleaning products and equipment required to complete the booked service.
               </p>
+              <p className="text-gray-600">
+                Customers should inform us before the appointment of any allergies, sensitivities or requirements relating to cleaning products.
+              </p>
+            </div>
 
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">6.2 Cancellation Fees</h3>
-              <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                <ul className="space-y-2 text-gray-600">
-                  <li><strong>More than 48 hours notice:</strong> No charge</li>
-                  <li><strong>24-48 hours notice:</strong> 25% of the quoted price</li>
-                  <li><strong>Less than 24 hours notice:</strong> 50% of the quoted price</li>
-                  <li><strong>No-show / No access:</strong> 100% of the quoted price</li>
+            {/* Section 7 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Moving Furniture and Heavy Items</h2>
+              <p className="text-gray-600 mb-4">
+                Our cleaners may move lightweight items where reasonably necessary to complete the cleaning.
+              </p>
+              <p className="text-gray-600 mb-4">
+                For health and safety reasons, cleaners are not required to move excessively heavy furniture, appliances or other items that cannot reasonably and safely be moved by one person.
+              </p>
+              <p className="text-gray-600">
+                Areas that cannot safely be accessed may not be cleaned.
+              </p>
+            </div>
+
+            {/* Section 8 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Service Times</h2>
+              <p className="text-gray-600 mb-4">
+                Any estimated cleaning duration provided before the appointment is an estimate.
+              </p>
+              <p className="text-gray-600 mb-4">
+                The actual time required may vary depending on the size, condition and cleanliness of the property and the services requested.
+              </p>
+              <p className="text-gray-600">
+                If substantially additional work is required beyond the agreed scope, we will discuss this with the customer before carrying out chargeable additional work.
+              </p>
+            </div>
+
+            {/* Section 9 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. End of Tenancy Cleaning</h2>
+              <p className="text-gray-600 mb-4">
+                Our End of Tenancy Cleaning service is carried out to the scope agreed when the booking is confirmed.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where advertised, our <strong>48-hour cleaning guarantee</strong> means that if an area included within the original cleaning specification has been missed or has not been cleaned to the agreed standard, the customer should contact us within <strong>48 hours of completion</strong>.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where the complaint is valid, we will arrange to return and rectify the relevant area at no additional cleaning charge.
+              </p>
+              <p className="text-gray-600 mb-4">
+                The guarantee does not cover:
+              </p>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
+                <li>Areas or services that were not included in the original booking.</li>
+                <li>New dirt, staining or damage occurring after our service.</li>
+                <li>Permanent stains, wear, deterioration or damage that cannot reasonably be removed through normal cleaning.</li>
+                <li>Issues caused by third parties entering or using the property after cleaning.</li>
+                <li>Additional cleaning subsequently requested by a landlord, agent or inventory clerk that was outside the original agreed scope.</li>
+              </ul>
+              <p className="text-gray-600">
+                The guarantee is a cleaning rectification guarantee and does not constitute a guarantee that a landlord or letting agent will return a customer&apos;s tenancy deposit.
+              </p>
+            </div>
+
+            {/* Section 10 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Damage and Breakages</h2>
+              <p className="text-gray-600 mb-4">
+                We take reasonable care while working in customers&apos; properties.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Any alleged damage or breakage should be reported to us as soon as reasonably possible, together with photographs or other relevant information where available.
+              </p>
+              <p className="text-gray-600 mb-4">
+                We will investigate reported incidents and deal with valid claims in accordance with our legal obligations and any applicable insurance arrangements.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Pre-existing damage, normal wear and tear, deterioration, defective items or damage resulting from unstable or improperly fitted items are not considered damage caused by our cleaning service.
+              </p>
+              <p className="text-gray-600">
+                Nothing in these terms excludes or limits liability where doing so would be unlawful.
+              </p>
+            </div>
+
+            {/* Section 11 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Complaints</h2>
+              <p className="text-gray-600 mb-4">
+                If you are dissatisfied with any aspect of the service, please contact Cleaning Apex & Facility Services Ltd as soon as possible and provide details of the issue.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where appropriate, we may request photographs so that we can assess the problem.
+              </p>
+              <p className="text-gray-600">
+                We will aim to resolve legitimate service issues fairly and within a reasonable period.
+              </p>
+            </div>
+
+            {/* Section 12 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Parking and Additional Charges</h2>
+              <p className="text-gray-600 mb-4">
+                The customer should inform us before booking if paid parking, congestion charges or other unavoidable access charges apply to the property.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where such charges have not been included in the quoted price, they may be added to the final amount where this has been communicated and agreed with the customer.
+              </p>
+              <p className="text-gray-600">
+                Any additional service requested on the day may incur an additional charge, which will be agreed before the additional work is carried out.
+              </p>
+            </div>
+
+            {/* Section 13 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Photos</h2>
+              <p className="text-gray-600 mb-4">
+                Where necessary, photographs may be taken before or after cleaning to document the condition of the property, confirm completion of work or assist with resolving a complaint.
+              </p>
+              <p className="text-gray-600">
+                We will not use identifiable photographs of a customer&apos;s property for advertising or promotional purposes without appropriate permission.
+              </p>
+            </div>
+
+            {/* Section 14 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Consumer Rights</h2>
+              <p className="text-gray-600 mb-4">
+                Nothing in these Terms & Conditions is intended to restrict or remove any rights customers have under applicable UK consumer law.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Where a customer has statutory cancellation rights for a booking made online, by telephone or away from our business premises, those rights will apply.
+              </p>
+              <p className="text-gray-600">
+                Where a customer specifically requests that services begin during an applicable statutory cancellation period, additional rules concerning cancellation and payment for services already supplied may apply.
+              </p>
+            </div>
+
+            {/* Section 15 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">15. Changes to a Booking</h2>
+              <p className="text-gray-600 mb-4">
+                Any changes to the property, cleaning requirements or services requested should be communicated before the appointment.
+              </p>
+              <p className="text-gray-600 mb-4">
+                Significant changes may result in a revised quotation.
+              </p>
+              <p className="text-gray-600">
+                We will obtain the customer&apos;s agreement before carrying out additional chargeable work.
+              </p>
+            </div>
+
+            {/* Section 16 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">16. Governing Law</h2>
+              <p className="text-gray-600 mb-4">
+                These Terms & Conditions are governed by the applicable laws of England and Wales.
+              </p>
+              <p className="text-gray-600">
+                Customers retain any rights they have regarding where legal proceedings may be brought under applicable consumer law.
+              </p>
+            </div>
+
+            {/* Section 17 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">17. Contact</h2>
+              <p className="text-gray-600 mb-4">
+                Questions about a booking, cancellation, payment or these Terms & Conditions should be directed to Cleaning Apex & Facility Services Ltd using the contact details provided on our website.
+              </p>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <ul className="list-none text-gray-600 space-y-2">
+                  <li><strong>Email:</strong> <a href={`mailto:${COMPANY_INFO.email}`} className="text-primary hover:underline">{COMPANY_INFO.email}</a></li>
+                  <li><strong>Phone:</strong> <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">{COMPANY_INFO.phone}</a></li>
+                  <li><strong>Address:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
                 </ul>
               </div>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">6.3 Our Right to Cancel</h3>
-              <p className="text-gray-600 mb-4">
-                We may cancel or reschedule a booking due to unforeseen circumstances (e.g., staff
-                illness, extreme weather, emergencies). In such cases, we will offer an alternative
-                date or a full refund at your choice.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">6.4 Regular Service Contracts</h3>
-              <p className="text-gray-600 mb-4">
-                For ongoing service contracts, either party may terminate with 30 days written notice.
-                Any Services already scheduled and confirmed will be honoured or subject to standard
-                cancellation fees.
-              </p>
             </div>
 
-            {/* Liability and Insurance */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Liability and Insurance</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">7.1 Our Insurance</h3>
-              <p className="text-gray-600 mb-4">
-                We maintain comprehensive insurance coverage including:
+            {/* Last Updated */}
+            <div className="text-center pt-8 border-t border-gray-200">
+              <p className="text-gray-500 font-medium">
+                Last updated: {lastUpdated}
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li>Public Liability Insurance (minimum £5 million)</li>
-                <li>Employer&apos;s Liability Insurance (minimum £10 million)</li>
-                <li>Professional Indemnity Insurance</li>
-              </ul>
-              <p className="text-gray-600 mb-4">
-                Certificates of insurance are available upon request.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">7.2 Damage Claims</h3>
-              <p className="text-gray-600 mb-4">
-                If you believe our staff have caused damage to your property, you must notify us
-                within 24 hours of the Service being completed. We will investigate all claims
-                fairly and promptly. Genuine claims will be processed through our insurance.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">7.3 Limitation of Liability</h3>
-              <p className="text-gray-600 mb-4">
-                Nothing in these Terms excludes or limits our liability for death or personal injury
-                caused by our negligence, fraud, or any other liability that cannot be excluded by law.
-              </p>
-              <p className="text-gray-600 mb-4">
-                Subject to the above, our total liability for any claim shall not exceed the greater
-                of: (a) the price paid for the specific Service giving rise to the claim, or (b) £1,000.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">7.4 Exclusions</h3>
-              <p className="text-gray-600 mb-4">
-                We are not liable for:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Pre-existing damage or wear and tear</li>
-                <li>Damage to fragile, antique, or high-value items not disclosed prior to cleaning</li>
-                <li>Colour fading or shrinkage of fabrics during cleaning</li>
-                <li>Stains that cannot be removed despite our best efforts</li>
-                <li>Any indirect or consequential losses</li>
-              </ul>
-            </div>
-
-            {/* Guarantee */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Satisfaction Guarantee</h2>
-              <p className="text-gray-600 mb-4">
-                We are committed to your satisfaction. If you are not happy with any aspect of our
-                Service, please contact us within 24 hours and we will:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li>Return to re-clean the affected areas at no additional charge</li>
-                <li>If re-cleaning does not resolve the issue, discuss a partial or full refund</li>
-              </ul>
-              <p className="text-gray-600">
-                This guarantee applies to domestic cleaning services and end of tenancy cleans
-                (subject to a satisfactory re-inspection within 72 hours of the original clean).
-              </p>
-            </div>
-
-            {/* Data Protection */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Data Protection and Privacy</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">9.1 GDPR Compliance</h3>
-              <p className="text-gray-600 mb-4">
-                We process your personal data in accordance with the UK General Data Protection
-                Regulation (UK GDPR) and the Data Protection Act 2018. For full details, please
-                refer to our <Link href="/privacy" className="text-primary hover:underline">Privacy Policy</Link>.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">9.2 Data We Collect</h3>
-              <p className="text-gray-600 mb-4">
-                We collect and process the following data to provide our Services:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li>Name, address, and contact details</li>
-                <li>Property access information (keys, codes)</li>
-                <li>Payment information</li>
-                <li>Service history and preferences</li>
-                <li>Communications between you and us</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">9.3 Your Rights</h3>
-              <p className="text-gray-600 mb-4">
-                Under UK GDPR, you have the right to:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Access your personal data</li>
-                <li>Rectify inaccurate data</li>
-                <li>Request erasure of your data</li>
-                <li>Restrict or object to processing</li>
-                <li>Data portability</li>
-                <li>Lodge a complaint with the Information Commissioner&apos;s Office (ICO)</li>
-              </ul>
-            </div>
-
-            {/* Health and Safety */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Health and Safety</h2>
-              <p className="text-gray-600 mb-4">
-                We comply with the Health and Safety at Work Act 1974 and all relevant regulations.
-                Our staff are trained in safe working practices, COSHH (Control of Substances
-                Hazardous to Health), and manual handling.
-              </p>
-              <p className="text-gray-600 mb-4">
-                We use eco-friendly, non-toxic cleaning products wherever possible. If you have
-                specific requirements regarding cleaning products (e.g., allergies, environmental
-                concerns), please inform us before your booking.
-              </p>
-            </div>
-
-            {/* Complaints */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Complaints Procedure</h2>
-              <p className="text-gray-600 mb-4">
-                If you have a complaint, please contact us:
-              </p>
-              <ul className="list-none text-gray-600 space-y-2 mb-4">
-                <li><strong>Email:</strong> {COMPANY_INFO.email}</li>
-                <li><strong>Phone:</strong> {COMPANY_INFO.phone}</li>
-                <li><strong>Post:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
-              </ul>
-              <p className="text-gray-600 mb-4">
-                We aim to acknowledge complaints within 2 working days and provide a full response
-                within 10 working days. If you remain dissatisfied, you may refer the matter to
-                alternative dispute resolution services or the courts.
-              </p>
-            </div>
-
-            {/* General */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. General Provisions</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">12.1 Entire Agreement</h3>
-              <p className="text-gray-600 mb-4">
-                These Terms, together with our Privacy Policy and any specific service agreement,
-                constitute the entire agreement between you and us.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">12.2 Amendments</h3>
-              <p className="text-gray-600 mb-4">
-                We may update these Terms from time to time. Material changes will be communicated
-                to existing customers. Continued use of our Services after changes constitutes
-                acceptance of the updated Terms.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">12.3 Severability</h3>
-              <p className="text-gray-600 mb-4">
-                If any provision of these Terms is found to be invalid or unenforceable, the
-                remaining provisions shall continue in full force and effect.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">12.4 Governing Law</h3>
-              <p className="text-gray-600 mb-4">
-                These Terms are governed by the laws of England and Wales. Any disputes shall be
-                subject to the exclusive jurisdiction of the courts of England and Wales.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">12.5 Third Party Rights</h3>
-              <p className="text-gray-600 mb-4">
-                These Terms do not confer any rights on any third party under the Contracts
-                (Rights of Third Parties) Act 1999.
-              </p>
-            </div>
-
-            {/* Contact */}
-            <div className="bg-gray-50 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
-              <p className="text-gray-600 mb-4">
-                If you have any questions about these Terms of Service, please contact us:
-              </p>
-              <ul className="list-none text-gray-600 space-y-2">
-                <li><strong>Company:</strong> {COMPANY_INFO.name}</li>
-                <li><strong>Email:</strong> <a href={`mailto:${COMPANY_INFO.email}`} className="text-primary hover:underline">{COMPANY_INFO.email}</a></li>
-                <li><strong>Phone:</strong> <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">{COMPANY_INFO.phone}</a></li>
-                <li><strong>Address:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
-              </ul>
             </div>
 
           </div>
