@@ -5,7 +5,7 @@ import { COMPANY_INFO } from "@/lib/constants";
 
 export default function WhatsAppButton() {
   const message = encodeURIComponent(
-    "Hi! I'm interested in your cleaning services. Can you provide more information?"
+    "Hi Cleaning Apex, I'm interested in your cleaning services. Can you provide more information?"
   );
 
   const whatsappNumber = COMPANY_INFO.whatsapp.replace(/\s/g, "");
