@@ -50,17 +50,26 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Cleaning Apex & Facility Services Limited was founded with a
-                  simple mission: to provide London homes and businesses with
-                  cleaning services they can truly rely on. What started as a
-                  small operation has grown into a trusted name across the capital.
+                  Cleaning Apex & Facility Services Limited is a trusted provider
+                  of domestic and commercial cleaning services, dedicated to
+                  achieving excellence in every environment we serve. We deliver
+                  reliable, high-quality cleaning solutions that create safe,
+                  healthy, and welcoming spaces for our clients.
                 </p>
                 <p>
-                  We understand that inviting someone into your home or workplace
-                  requires trust. That&apos;s why we&apos;ve built our entire
-                  operation around transparency, reliability, and genuine care
-                  for our clients. Every member of our team is carefully vetted,
-                  professionally trained, and committed to exceeding expectations.
+                  Cleaning Apex & Facility Services Limited was founded with a
+                  simple mission: to provide excellence in every clean, raising
+                  cleaning standards and services you can truly rely on. What
+                  started as a small operation has grown into a trusted name
+                  across the capital.
+                </p>
+                <p>
+                  At Cleaning Apex & Facility Services Limited, we understand that
+                  inviting someone into your home or workplace requires trust.
+                  That&apos;s why we&apos;ve built our entire operation around
+                  transparency, reliability, and genuine care for our clients.
+                  Every member of our team is carefully vetted, professionally
+                  trained, and committed to exceeding expectations.
                 </p>
                 <p>
                   Over the years, we&apos;ve had the privilege of serving hundreds
