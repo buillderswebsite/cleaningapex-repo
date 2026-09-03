@@ -3,7 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
+
+// Replace with your actual Google Analytics Measurement ID (e.g., "G-XXXXXXXXXX")
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cleaningapex.co.uk"),
@@ -16,12 +20,35 @@ export const metadata: Metadata = {
   keywords: [
     "cleaning services London",
     "commercial cleaning London",
-    "domestic cleaning",
-    "end of tenancy cleaning",
+    "domestic cleaning London",
+    "house cleaning London",
+    "end of tenancy cleaning London",
+    "move out cleaning",
     "office cleaning London",
-    "deep cleaning services",
-    "carpet cleaning",
-    "professional cleaners",
+    "deep cleaning services London",
+    "carpet cleaning London",
+    "upholstery cleaning",
+    "professional cleaners London",
+    "cleaning company London",
+    "home cleaning services",
+    "regular cleaning London",
+    "one-off cleaning",
+    "spring cleaning London",
+    "Airbnb cleaning London",
+    "after builders cleaning",
+    "window cleaning",
+    "oven cleaning London",
+    "cleaners near me",
+    "affordable cleaning services",
+    "insured cleaners London",
+    "vetted cleaners",
+    "eco-friendly cleaning London",
+    "Westminster cleaning",
+    "Camden cleaning",
+    "Islington cleaning",
+    "Hackney cleaning",
+    "Southwark cleaning",
+    "Greenwich cleaning",
   ],
   authors: [{ name: "Cleaning Apex & Facility Services Limited" }],
   openGraph: {
@@ -176,6 +203,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <head>
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
