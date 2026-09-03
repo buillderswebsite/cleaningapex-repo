@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import Hero from "@/components/Hero";
 import TrustBadges from "@/components/TrustBadges";
+import Accreditations from "@/components/Accreditations";
+import GuaranteeBadge from "@/components/GuaranteeBadge";
 import ServiceCard from "@/components/ServiceCard";
 import Testimonial from "@/components/Testimonial";
 import { SERVICES, TESTIMONIALS, SERVICE_AREAS, COMPANY_INFO } from "@/lib/constants";
@@ -305,6 +307,18 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Guarantee & Accreditations */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-3xl mx-auto">
+            <GuaranteeBadge />
+          </div>
+        </div>
+      </section>
+
+      {/* Accreditations */}
+      <Accreditations />
 
       {/* CTA Section */}
       <section className="section-padding bg-gradient-to-br from-accent to-accent-700">

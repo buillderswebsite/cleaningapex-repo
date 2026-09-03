@@ -167,12 +167,21 @@ export default function Footer() {
           <p>
             © {currentYear} {COMPANY_INFO.name}. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+            <Link href="/faq" className="hover:text-secondary transition-colors">
+              FAQ
+            </Link>
             <Link href="/privacy" className="hover:text-secondary transition-colors">
-              Privacy Policy
+              Privacy
+            </Link>
+            <Link href="/cookies" className="hover:text-secondary transition-colors">
+              Cookies
             </Link>
             <Link href="/terms" className="hover:text-secondary transition-colors">
-              Terms of Service
+              Terms
+            </Link>
+            <Link href="/accessibility" className="hover:text-secondary transition-colors">
+              Accessibility
             </Link>
           </div>
         </div>

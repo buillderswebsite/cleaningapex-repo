@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, MapPin, CheckCircle } from "lucide-react";
 import { SERVICE_AREAS, SERVICES } from "@/lib/constants";
 import Map from "@/components/Map";
+import PostcodeChecker from "@/components/PostcodeChecker";
 
 export const metadata: Metadata = {
   title: "Service Areas | Cleaning Services London & Surrounding Areas",
@@ -174,22 +174,11 @@ export default function AreasPage() {
         </div>
       </section>
 
-      {/* Not in our area? */}
+      {/* Postcode Checker */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 md:p-12 text-center max-w-3xl mx-auto">
-            <h2 className="heading-3 text-gray-900 mb-4">
-              Don&apos;t See Your Area Listed?
-            </h2>
-            <p className="text-gray-600 mb-6">
-              We&apos;re always expanding our coverage. If your area isn&apos;t
-              listed above, get in touch anyway — we may still be able to help,
-              or can recommend a trusted partner.
-            </p>
-            <Link href="/contact" className="btn-primary gap-2">
-              Contact Us
-              <ArrowRight size={18} />
-            </Link>
+          <div className="max-w-xl mx-auto">
+            <PostcodeChecker />
           </div>
         </div>
       </section>
