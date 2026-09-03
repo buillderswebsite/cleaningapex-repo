@@ -219,14 +219,19 @@ export default function QuoteForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Price Estimate Banner */}
-      <div className="bg-primary text-white rounded-xl p-6 sticky top-20 z-20 shadow-lg">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Calculator size={24} />
-            <span className="font-medium">Estimated Price:</span>
+      <div className="bg-gradient-to-r from-primary to-primary-700 text-white rounded-xl p-4 md:p-6 sticky top-20 z-20 shadow-lg">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+              <Calculator size={20} />
+            </div>
+            <div>
+              <p className="text-xs text-blue-200 uppercase tracking-wide">Estimated Price</p>
+              <p className="text-xs text-blue-200">Final price confirmed after booking</p>
+            </div>
           </div>
-          <div className="text-right">
-            <span className="text-3xl font-bold">
+          <div className="text-left sm:text-right">
+            <span className="text-2xl md:text-3xl font-bold">
               {estimatedPrice > 0 ? `£${estimatedPrice}` : "Select options"}
             </span>
             {currentService?.unit === "/hour" && estimatedPrice > 0 && (
@@ -234,9 +239,6 @@ export default function QuoteForm() {
             )}
           </div>
         </div>
-        <p className="text-blue-200 text-sm mt-2">
-          Final price confirmed after booking
-        </p>
       </div>
 
       {error && (
