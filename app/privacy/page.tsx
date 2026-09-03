@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const lastUpdated = "1 September 2026";
+  const lastUpdated = "September 2026";
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function PrivacyPage() {
       <section className="bg-gradient-to-br from-primary to-primary-700 py-16">
         <div className="container-custom text-center">
           <h1 className="heading-1 text-white mb-4">Privacy Policy</h1>
-          <p className="text-blue-100">Last updated: {lastUpdated}</p>
+          <p className="text-blue-100">Cleaning Apex & Facility Services Ltd</p>
         </div>
       </section>
 
@@ -27,292 +27,249 @@ export default function PrivacyPage() {
           <div className="max-w-4xl mx-auto prose prose-gray prose-lg">
 
             {/* Introduction */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
-              <p className="text-gray-600 mb-4">
-                {COMPANY_INFO.name} (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) is committed to protecting your
-                privacy and personal data. This Privacy Policy explains how we collect, use,
-                store, and protect your information in accordance with the UK General Data
-                Protection Regulation (UK GDPR) and the Data Protection Act 2018.
-              </p>
-              <p className="text-gray-600">
-                We are the data controller for the personal data we process. If you have any
-                questions about this policy or our data practices, please contact us using
-                the details provided at the end of this document.
+            <div className="mb-10">
+              <p className="text-gray-600 leading-relaxed">
+                This Privacy Policy explains how Cleaning Apex & Facility Services Ltd collects, uses, stores and protects your personal information when you use our services or interact with us. We are committed to protecting your privacy and handling your data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
               </p>
             </div>
 
-            {/* Information We Collect */}
-            <div className="mb-12">
+            {/* Section 1 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Who We Are</h2>
+              <p className="text-gray-600 mb-4">
+                Cleaning Apex & Facility Services Ltd is the data controller responsible for your personal data.
+              </p>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <ul className="list-none text-gray-600 space-y-2">
+                  <li><strong>Company:</strong> Cleaning Apex & Facility Services Ltd</li>
+                  <li><strong>Address:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
+                  <li><strong>Email:</strong> {COMPANY_INFO.email}</li>
+                  <li><strong>Phone:</strong> {COMPANY_INFO.phone}</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Section 2 */}
+            <div className="mb-10">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">2.1 Information You Provide</h3>
               <p className="text-gray-600 mb-4">
-                We collect information you voluntarily provide when you:
+                We collect personal information that you provide to us when booking our services, making enquiries, or communicating with us. This may include:
               </p>
               <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li>Request a quote or book our services</li>
-                <li>Create an account or customer profile</li>
-                <li>Contact us by phone, email, or through our website</li>
-                <li>Subscribe to our newsletter or marketing communications</li>
-                <li>Provide feedback or reviews</li>
+                <li><strong>Contact details:</strong> Name, address, email address, phone number</li>
+                <li><strong>Property information:</strong> Address of property to be cleaned, access arrangements, keys or access codes</li>
+                <li><strong>Payment information:</strong> Bank details, payment card information (processed securely through our payment provider)</li>
+                <li><strong>Service preferences:</strong> Cleaning requirements, scheduling preferences, special instructions</li>
+                <li><strong>Communications:</strong> Records of correspondence between you and us</li>
+                <li><strong>Feedback:</strong> Reviews, complaints, or other feedback you provide</li>
               </ul>
-              <p className="text-gray-600 mb-4">
-                This information may include:
+              <p className="text-gray-600">
+                As outlined in our <Link href="/terms" className="text-primary hover:underline">Terms & Conditions</Link>, we may also collect information about allergies, sensitivities or specific requirements relating to cleaning products.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li><strong>Identity data:</strong> Name, title</li>
-                <li><strong>Contact data:</strong> Address, email, phone number</li>
-                <li><strong>Property data:</strong> Property address, access information, keys/codes</li>
-                <li><strong>Financial data:</strong> Payment card details, bank account information</li>
-                <li><strong>Service data:</strong> Cleaning preferences, special requirements, service history</li>
-                <li><strong>Communication data:</strong> Your correspondence with us</li>
-              </ul>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">2.2 Information Collected Automatically</h3>
-              <p className="text-gray-600 mb-4">
-                When you visit our website, we may automatically collect:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li><strong>Technical data:</strong> IP address, browser type, device information, operating system</li>
-                <li><strong>Usage data:</strong> Pages visited, time spent, navigation paths</li>
-                <li><strong>Location data:</strong> General geographic location based on IP address</li>
-              </ul>
             </div>
 
-            {/* How We Use Your Information */}
-            <div className="mb-12">
+            {/* Section 3 */}
+            <div className="mb-10">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
               <p className="text-gray-600 mb-4">
-                We use your personal data for the following purposes and legal bases:
+                We use your personal information for the following purposes:
               </p>
-
-              <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                <h4 className="font-semibold text-gray-900 mb-2">Contract Performance</h4>
-                <ul className="list-disc pl-6 text-gray-600 space-y-1">
-                  <li>Processing and fulfilling your bookings</li>
-                  <li>Providing our cleaning services</li>
-                  <li>Managing payments and invoicing</li>
-                  <li>Communicating about your bookings</li>
-                </ul>
-              </div>
-
-              <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                <h4 className="font-semibold text-gray-900 mb-2">Legitimate Interests</h4>
-                <ul className="list-disc pl-6 text-gray-600 space-y-1">
-                  <li>Improving our services and website</li>
-                  <li>Analysing service usage and trends</li>
-                  <li>Preventing fraud and ensuring security</li>
-                  <li>Staff training and quality assurance</li>
-                  <li>Business administration and record keeping</li>
-                </ul>
-              </div>
-
-              <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                <h4 className="font-semibold text-gray-900 mb-2">Legal Obligations</h4>
-                <ul className="list-disc pl-6 text-gray-600 space-y-1">
-                  <li>Compliance with tax and accounting requirements</li>
-                  <li>Responding to legal requests or court orders</li>
-                  <li>Health and safety obligations</li>
-                </ul>
-              </div>
-
-              <div className="bg-gray-50 rounded-lg p-6">
-                <h4 className="font-semibold text-gray-900 mb-2">Consent</h4>
-                <ul className="list-disc pl-6 text-gray-600 space-y-1">
-                  <li>Sending marketing communications (where consent obtained)</li>
-                  <li>Using non-essential cookies</li>
-                </ul>
-              </div>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li><strong>Service delivery:</strong> To provide cleaning services, manage bookings, and access your property as agreed</li>
+                <li><strong>Communication:</strong> To confirm bookings, send reminders, and respond to your enquiries</li>
+                <li><strong>Payment processing:</strong> To process deposits (as per our Terms & Conditions, a 25% deposit is required for one-off bookings) and final payments</li>
+                <li><strong>Quality assurance:</strong> To handle complaints, investigate issues, and improve our services</li>
+                <li><strong>Legal compliance:</strong> To comply with legal obligations and protect our legitimate interests</li>
+                <li><strong>Marketing:</strong> With your consent, to send you information about our services and special offers</li>
+              </ul>
             </div>
 
-            {/* Data Sharing */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Data Sharing</h2>
+            {/* Section 4 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Legal Basis for Processing</h2>
               <p className="text-gray-600 mb-4">
-                We may share your personal data with:
+                We process your personal data on the following legal grounds:
+              </p>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li><strong>Contract:</strong> Processing necessary to perform our contract with you (e.g., providing cleaning services)</li>
+                <li><strong>Legal obligation:</strong> Processing necessary to comply with legal requirements</li>
+                <li><strong>Legitimate interests:</strong> Processing necessary for our legitimate business interests, such as improving services and preventing fraud</li>
+                <li><strong>Consent:</strong> Where you have given consent for specific processing activities (e.g., marketing communications)</li>
+              </ul>
+            </div>
+
+            {/* Section 5 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Key Holding and Property Access</h2>
+              <p className="text-gray-600 mb-4">
+                As stated in our Terms & Conditions, if you provide us with keys or access codes to your property:
+              </p>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li>We store keys securely and separately from any identifying information</li>
+                <li>Access codes are stored securely and only shared with team members assigned to your property</li>
+                <li>This information is used solely for the purpose of delivering our cleaning services</li>
+                <li>Keys are held at your own risk, though we take reasonable precautions to ensure their security</li>
+              </ul>
+            </div>
+
+            {/* Section 6 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Photographs</h2>
+              <p className="text-gray-600 mb-4">
+                As outlined in our Terms & Conditions, photographs may be taken before or after cleaning to:
               </p>
               <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li><strong>Our staff:</strong> Cleaners and administrators who need access to perform their duties</li>
-                <li><strong>Payment processors:</strong> To process your payments securely (e.g., Stripe, PayPal)</li>
-                <li><strong>IT service providers:</strong> Who help us maintain our systems and website</li>
-                <li><strong>Professional advisors:</strong> Accountants, lawyers, insurers as necessary</li>
-                <li><strong>Regulatory authorities:</strong> HMRC, ICO, or other bodies when legally required</li>
+                <li>Document the condition of the property</li>
+                <li>Confirm completion of work</li>
+                <li>Assist with resolving complaints (particularly for our 48-hour End of Tenancy guarantee)</li>
               </ul>
               <p className="text-gray-600">
-                We do not sell your personal data to third parties. Any third parties we share
-                data with are contractually bound to protect your information and use it only
-                for specified purposes.
+                We will not use identifiable photographs of your property for advertising or promotional purposes without your appropriate permission.
               </p>
             </div>
 
-            {/* Data Retention */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Data Retention</h2>
+            {/* Section 7 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Who We Share Your Data With</h2>
               <p className="text-gray-600 mb-4">
-                We retain your personal data only for as long as necessary:
+                We may share your personal information with:
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li><strong>Active customer data:</strong> For the duration of our business relationship plus 6 years</li>
-                <li><strong>Financial records:</strong> 7 years (as required by HMRC)</li>
-                <li><strong>Marketing data:</strong> Until you unsubscribe or withdraw consent</li>
-                <li><strong>Website analytics:</strong> 26 months</li>
-                <li><strong>CCTV footage:</strong> 30 days (if applicable to our premises)</li>
-              </ul>
-            </div>
-
-            {/* Your Rights */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights</h2>
-              <p className="text-gray-600 mb-4">
-                Under UK GDPR, you have the following rights:
-              </p>
-
-              <div className="space-y-4">
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right of Access</h4>
-                  <p className="text-gray-600 text-sm">Request a copy of your personal data we hold.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Rectification</h4>
-                  <p className="text-gray-600 text-sm">Request correction of inaccurate or incomplete data.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Erasure</h4>
-                  <p className="text-gray-600 text-sm">Request deletion of your data in certain circumstances.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Restrict Processing</h4>
-                  <p className="text-gray-600 text-sm">Request limitation of how we use your data.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Data Portability</h4>
-                  <p className="text-gray-600 text-sm">Receive your data in a structured, machine-readable format.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Object</h4>
-                  <p className="text-gray-600 text-sm">Object to processing based on legitimate interests or for marketing.</p>
-                </div>
-
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="font-semibold text-gray-900">Right to Withdraw Consent</h4>
-                  <p className="text-gray-600 text-sm">Withdraw consent at any time where processing is based on consent.</p>
-                </div>
-              </div>
-
-              <p className="text-gray-600 mt-4">
-                To exercise any of these rights, please contact us using the details below.
-                We will respond within one month. There is no fee for most requests, but we
-                may charge a reasonable fee for repetitive, manifestly unfounded, or excessive requests.
-              </p>
-            </div>
-
-            {/* Data Security */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Data Security</h2>
-              <p className="text-gray-600 mb-4">
-                We implement appropriate technical and organisational measures to protect your
-                personal data, including:
-              </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Encryption of data in transit (SSL/TLS) and at rest</li>
-                <li>Secure password policies and access controls</li>
-                <li>Regular security assessments and updates</li>
-                <li>Staff training on data protection</li>
-                <li>Physical security measures for our premises</li>
-                <li>Secure disposal of data when no longer needed</li>
-              </ul>
-            </div>
-
-            {/* Cookies */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Cookies</h2>
-              <p className="text-gray-600 mb-4">
-                Our website uses cookies to enhance your experience. Cookies are small text
-                files stored on your device.
-              </p>
-
-              <h3 className="text-xl font-semibold text-gray-800 mb-3">Types of Cookies We Use</h3>
               <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-                <li><strong>Essential cookies:</strong> Required for the website to function (no consent needed)</li>
-                <li><strong>Analytics cookies:</strong> Help us understand how visitors use our site</li>
-                <li><strong>Marketing cookies:</strong> Used to deliver relevant advertisements</li>
+                <li><strong>Our cleaning team:</strong> Team members assigned to clean your property will receive necessary information to carry out the service</li>
+                <li><strong>Payment processors:</strong> Secure third-party payment providers to process transactions</li>
+                <li><strong>Professional advisors:</strong> Accountants, lawyers, or insurers where necessary</li>
+                <li><strong>Legal authorities:</strong> Where required by law or to protect our legal rights</li>
               </ul>
               <p className="text-gray-600">
-                You can manage cookie preferences through your browser settings. Note that
-                disabling certain cookies may affect website functionality.
+                We do not sell your personal data to third parties.
               </p>
             </div>
 
-            {/* International Transfers */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. International Data Transfers</h2>
+            {/* Section 8 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Data Retention</h2>
               <p className="text-gray-600 mb-4">
-                Your data is primarily stored and processed within the UK. If we transfer data
-                outside the UK, we ensure appropriate safeguards are in place, such as:
+                We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected:
               </p>
               <ul className="list-disc pl-6 text-gray-600 space-y-2">
-                <li>Transfers to countries with adequate data protection (UK adequacy decisions)</li>
-                <li>Standard Contractual Clauses approved by the ICO</li>
-                <li>Binding Corporate Rules where applicable</li>
+                <li><strong>Active customers:</strong> Data retained while you remain a customer and for a reasonable period thereafter</li>
+                <li><strong>Booking records:</strong> Retained for 6 years for tax and legal purposes</li>
+                <li><strong>Complaints and disputes:</strong> Retained until fully resolved and for a reasonable period thereafter</li>
+                <li><strong>Marketing preferences:</strong> Until you withdraw consent</li>
               </ul>
             </div>
 
-            {/* Children */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Children&apos;s Privacy</h2>
-              <p className="text-gray-600">
-                Our services are not directed at children under 18. We do not knowingly collect
-                personal data from children. If you believe we have collected data from a child,
-                please contact us immediately.
-              </p>
-            </div>
-
-            {/* Changes */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Changes to This Policy</h2>
-              <p className="text-gray-600">
-                We may update this Privacy Policy periodically. Material changes will be
-                communicated to you via email or a prominent notice on our website. The
-                &quot;Last updated&quot; date at the top indicates when this policy was last revised.
-              </p>
-            </div>
-
-            {/* Complaints */}
-            <div className="mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Complaints</h2>
+            {/* Section 9 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Data Security</h2>
               <p className="text-gray-600 mb-4">
-                If you have concerns about how we handle your data, please contact us first
-                so we can try to resolve the issue.
+                We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, loss, or damage. These include:
               </p>
-              <p className="text-gray-600">
-                You also have the right to lodge a complaint with the Information
-                Commissioner&apos;s Office (ICO):
-              </p>
-              <ul className="list-none text-gray-600 mt-4 space-y-1">
-                <li><strong>Website:</strong> <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">ico.org.uk</a></li>
-                <li><strong>Phone:</strong> 0303 123 1113</li>
-                <li><strong>Post:</strong> Information Commissioner&apos;s Office, Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF</li>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+                <li>Secure storage of physical records</li>
+                <li>Password protection and encryption for digital records</li>
+                <li>Restricted access to personal data on a need-to-know basis</li>
+                <li>Regular review of security practices</li>
+                <li>Secure payment processing through PCI DSS compliant providers</li>
               </ul>
             </div>
 
-            {/* Contact */}
-            <div className="bg-gray-50 rounded-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
+            {/* Section 10 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Your Rights</h2>
               <p className="text-gray-600 mb-4">
-                For any questions about this Privacy Policy or to exercise your rights:
+                Under UK GDPR, you have the following rights regarding your personal data:
               </p>
-              <ul className="list-none text-gray-600 space-y-2">
-                <li><strong>Data Controller:</strong> {COMPANY_INFO.name}</li>
-                <li><strong>Email:</strong> <a href={`mailto:${COMPANY_INFO.email}`} className="text-primary hover:underline">{COMPANY_INFO.email}</a></li>
-                <li><strong>Phone:</strong> <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">{COMPANY_INFO.phone}</a></li>
-                <li><strong>Address:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
+                <li><strong>Right of access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong>Right to rectification:</strong> Request correction of inaccurate or incomplete data</li>
+                <li><strong>Right to erasure:</strong> Request deletion of your data in certain circumstances</li>
+                <li><strong>Right to restrict processing:</strong> Request limitation of how we use your data</li>
+                <li><strong>Right to data portability:</strong> Request transfer of your data to another organisation</li>
+                <li><strong>Right to object:</strong> Object to processing based on legitimate interests or for direct marketing</li>
+                <li><strong>Right to withdraw consent:</strong> Withdraw consent at any time where processing is based on consent</li>
               </ul>
+              <p className="text-gray-600">
+                To exercise any of these rights, please contact us using the details provided below.
+              </p>
+            </div>
+
+            {/* Section 11 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Cookies</h2>
+              <p className="text-gray-600 mb-4">
+                Our website uses cookies to improve your experience and analyse site usage. For detailed information about the cookies we use, please see our <Link href="/cookies" className="text-primary hover:underline">Cookie Policy</Link>.
+              </p>
+            </div>
+
+            {/* Section 12 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Marketing Communications</h2>
+              <p className="text-gray-600 mb-4">
+                We may send you marketing communications about our services if you have:
+              </p>
+              <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
+                <li>Requested information from us</li>
+                <li>Used our services and not opted out of marketing</li>
+                <li>Given your explicit consent to receive marketing</li>
+              </ul>
+              <p className="text-gray-600">
+                You can opt out of marketing communications at any time by contacting us or using the unsubscribe link in our emails.
+              </p>
+            </div>
+
+            {/* Section 13 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Complaints</h2>
+              <p className="text-gray-600 mb-4">
+                If you have concerns about how we handle your personal data, please contact us first so we can try to resolve the issue.
+              </p>
+              <p className="text-gray-600 mb-4">
+                You also have the right to lodge a complaint with the Information Commissioner&apos;s Office (ICO):
+              </p>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <ul className="list-none text-gray-600 space-y-2">
+                  <li><strong>Website:</strong> <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.ico.org.uk</a></li>
+                  <li><strong>Phone:</strong> 0303 123 1113</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Section 14 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Changes to This Policy</h2>
+              <p className="text-gray-600">
+                We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically.
+              </p>
+            </div>
+
+            {/* Section 15 */}
+            <div className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">15. Contact Us</h2>
+              <p className="text-gray-600 mb-4">
+                If you have any questions about this Privacy Policy or wish to exercise your data rights, please contact us:
+              </p>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <ul className="list-none text-gray-600 space-y-2">
+                  <li><strong>Email:</strong> <a href={`mailto:${COMPANY_INFO.email}`} className="text-primary hover:underline">{COMPANY_INFO.email}</a></li>
+                  <li><strong>Phone:</strong> <a href={`tel:${COMPANY_INFO.phone.replace(/\s/g, "")}`} className="text-primary hover:underline">{COMPANY_INFO.phone}</a></li>
+                  <li><strong>Address:</strong> {COMPANY_INFO.address.street}, {COMPANY_INFO.address.city}, {COMPANY_INFO.address.postcode}</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Related Links */}
+            <div className="mb-10 pt-6 border-t border-gray-200">
+              <p className="text-gray-600">
+                See also: <Link href="/terms" className="text-primary hover:underline">Terms & Conditions</Link> | <Link href="/cookies" className="text-primary hover:underline">Cookie Policy</Link>
+              </p>
+            </div>
+
+            {/* Last Updated */}
+            <div className="text-center pt-8 border-t border-gray-200">
+              <p className="text-gray-500 font-medium">
+                Last updated: {lastUpdated}
+              </p>
             </div>
 
           </div>
