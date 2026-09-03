@@ -108,9 +108,9 @@ const jsonLd = {
   email: "info@cleaningapexfacillities.co.uk",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "123 Business Park",
+    streetAddress: "98 Fairlawn Park",
     addressLocality: "London",
-    postalCode: "E1 6AN",
+    postalCode: "SE26 5SB",
     addressCountry: "GB",
   },
   geo: {

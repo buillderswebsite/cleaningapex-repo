@@ -6,9 +6,9 @@ export const COMPANY_INFO = {
   whatsapp: "44 7960691109",
   email: "info@cleaningapexfacillities.co.uk",
   address: {
-    street: "123 Business Park",
+    street: "98 Fairlawn Park",
     city: "London",
-    postcode: "E1 6AN",
+    postcode: "SE26 5SB",
     country: "United Kingdom",
   },
   hours: {
