@@ -64,7 +64,7 @@ export const SERVICES = [
   {
     id: "end-of-tenancy",
     title: "End of Tenancy Cleaning",
-    shortDescription: "Get your full deposit back with our deep clean",
+    shortDescription: "Get your full deposit back with our deep clean. Pricing by property size, starts from £159",
     description:
       "Moving out? Our comprehensive end of tenancy cleaning meets the highest letting agent standards. We guarantee your deposit back or we'll re-clean for free.",
     icon: "Key",
