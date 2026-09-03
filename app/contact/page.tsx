@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import QuoteForm from "@/components/QuoteForm";
+import Map from "@/components/Map";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -169,26 +169,16 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Image Banner */}
-      <section className="py-0">
-        <div className="relative h-80">
-          <Image
-            src="/images/outdoor-cleaning.jpg"
-            alt="Professional cleaning services"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-primary/70 flex items-center justify-center">
-            <div className="text-center text-white">
-              <MapPin size={48} className="mx-auto mb-4" />
-              <p className="text-xl font-semibold">
-                Serving All London Boroughs
-              </p>
-              <p className="text-blue-100 mt-2">
-                & surrounding areas
-              </p>
-            </div>
+      {/* Map Section */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center mb-8">
+            <h2 className="heading-3 text-gray-900 mb-3">Our Service Area</h2>
+            <p className="text-gray-600">
+              Serving all London boroughs and surrounding areas
+            </p>
           </div>
+          <Map height="400px" />
         </div>
       </section>
 

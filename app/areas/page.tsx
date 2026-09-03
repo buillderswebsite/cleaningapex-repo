@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, MapPin, CheckCircle } from "lucide-react";
 import { SERVICE_AREAS, SERVICES } from "@/lib/constants";
+import Map from "@/components/Map";
 
 export const metadata: Metadata = {
   title: "Service Areas | Cleaning Services London & Surrounding Areas",
@@ -67,44 +68,12 @@ export default function AreasPage() {
               </div>
             </div>
 
-            {/* Image Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative rounded-2xl overflow-hidden aspect-square">
-                <Image
-                  src="/images/dusting-tv.jpg"
-                  alt="Professional dusting services"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden aspect-square">
-                <Image
-                  src="/images/washing-dishes.jpg"
-                  alt="Kitchen cleaning services"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden aspect-square">
-                <Image
-                  src="/images/dishwasher-clean.jpg"
-                  alt="Appliance cleaning"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-              </div>
-              <div className="relative rounded-2xl overflow-hidden aspect-square">
-                <Image
-                  src="/images/outdoor-cleaning.jpg"
-                  alt="Outdoor cleaning services"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-              </div>
+            {/* Map */}
+            <div>
+              <Map height="450px" />
+              <p className="text-sm text-gray-500 mt-3 text-center">
+                Our service coverage across Greater London and surrounding areas
+              </p>
             </div>
           </div>
         </div>
