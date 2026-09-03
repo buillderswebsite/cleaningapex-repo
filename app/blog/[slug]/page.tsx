@@ -1,12 +1,45 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Clock, Calendar, User, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Calendar, User, Share2 } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/blog-data";
 import type { Metadata } from "next";
+import React from "react";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+// Parse inline markdown (bold text)
+function parseInlineMarkdown(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  let remaining = text;
+  let key = 0;
+
+  while (remaining.length > 0) {
+    const boldMatch = remaining.match(/\*\*([^*]+)\*\*/);
+
+    if (boldMatch && boldMatch.index !== undefined) {
+      // Add text before the bold
+      if (boldMatch.index > 0) {
+        parts.push(remaining.slice(0, boldMatch.index));
+      }
+      // Add the bold text
+      parts.push(
+        <strong key={key++} className="font-semibold text-gray-900">
+          {boldMatch[1]}
+        </strong>
+      );
+      // Continue with the rest
+      remaining = remaining.slice(boldMatch.index + boldMatch[0].length);
+    } else {
+      // No more bold, add remaining text
+      parts.push(remaining);
+      break;
+    }
+  }
+
+  return parts.length === 1 ? parts[0] : <>{parts}</>;
 }
 
 export async function generateStaticParams() {
@@ -138,18 +171,18 @@ export default async function BlogPostPage({ params }: Props) {
                   if (trimmed.startsWith("## ")) {
                     return (
                       <h2 key={index} className="text-2xl font-semibold text-gray-900 mt-10 mb-4">
-                        {trimmed.replace("## ", "")}
+                        {parseInlineMarkdown(trimmed.replace("## ", ""))}
                       </h2>
                     );
                   }
                   if (trimmed.startsWith("### ")) {
                     return (
                       <h3 key={index} className="text-xl font-semibold text-gray-900 mt-8 mb-3">
-                        {trimmed.replace("### ", "")}
+                        {parseInlineMarkdown(trimmed.replace("### ", ""))}
                       </h3>
                     );
                   }
-                  if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
+                  if (trimmed.startsWith("**") && trimmed.endsWith("**") && !trimmed.slice(2, -2).includes("**")) {
                     return (
                       <p key={index} className="font-semibold text-gray-900 mt-6 mb-2">
                         {trimmed.replace(/\*\*/g, "")}
@@ -159,21 +192,21 @@ export default async function BlogPostPage({ params }: Props) {
                   if (trimmed.startsWith("- ")) {
                     return (
                       <li key={index} className="text-gray-600 ml-4">
-                        {trimmed.replace("- ", "")}
+                        {parseInlineMarkdown(trimmed.replace("- ", ""))}
                       </li>
                     );
                   }
                   if (/^\d+\./.test(trimmed)) {
                     return (
                       <li key={index} className="text-gray-600 ml-4 list-decimal">
-                        {trimmed.replace(/^\d+\.\s*/, "")}
+                        {parseInlineMarkdown(trimmed.replace(/^\d+\.\s*/, ""))}
                       </li>
                     );
                   }
 
                   return (
                     <p key={index} className="text-gray-600 leading-relaxed mb-4">
-                      {trimmed}
+                      {parseInlineMarkdown(trimmed)}
                     </p>
                   );
                 })}
@@ -197,21 +230,34 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
 
               {/* CTA */}
-              <div className="mt-12 bg-accent/10 rounded-2xl p-8 border border-accent/20">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  Need Professional Cleaning?
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Let Cleaning Apex handle the hard work. We offer professional
-                  cleaning services across London with competitive rates and
-                  guaranteed satisfaction.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-                >
-                  Get a Free Quote
-                </Link>
+              <div className="mt-12 bg-gradient-to-br from-accent/10 to-primary/10 rounded-2xl p-8 border border-accent/20 relative overflow-hidden">
+                {/* Animated background glow */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+                <div className="relative z-10">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    Need Professional Cleaning?
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Let Cleaning Apex handle the hard work. We offer professional
+                    cleaning services across London with competitive rates and
+                    guaranteed satisfaction.
+                  </p>
+                  <Link
+                    href="/contact"
+                    className="group relative inline-flex items-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-accent/30"
+                  >
+                    {/* Shine effect */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+
+                    {/* Pulse ring */}
+                    <span className="absolute inset-0 rounded-xl animate-ping bg-accent opacity-20" style={{ animationDuration: '2s' }} />
+
+                    <span className="relative z-10">Get a Free Quote</span>
+                    <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </article>
 

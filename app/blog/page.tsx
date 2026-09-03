@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, Calendar, Search } from "lucide-react";
+import { ArrowRight, Clock, Calendar, Search, Sparkles } from "lucide-react";
 import { BLOG_POSTS, BLOG_CATEGORIES } from "@/lib/blog-data";
 
 export default function BlogPage() {
@@ -165,8 +165,17 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="section-padding bg-primary">
-        <div className="container-custom text-center">
+      <section className="section-padding bg-gradient-to-br from-primary via-primary-700 to-primary-800 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="container-custom text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+            <Sparkles size={16} className="text-accent animate-pulse" />
+            <span className="text-white/90 text-sm font-medium">Free Weekly Tips</span>
+          </div>
+
           <h2 className="heading-2 text-white mb-4">
             Get Cleaning Tips in Your Inbox
           </h2>
@@ -178,13 +187,19 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-4 rounded-lg text-gray-900 outline-none focus:ring-2 focus:ring-accent"
+              className="flex-1 px-6 py-4 rounded-xl text-gray-900 outline-none focus:ring-2 focus:ring-accent border-2 border-transparent focus:border-accent transition-all"
             />
             <button
               type="submit"
-              className="px-8 py-4 bg-accent hover:bg-accent-600 text-white font-semibold rounded-lg transition-colors"
+              className="group relative px-8 py-4 bg-accent text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-accent/30"
             >
-              Subscribe
+              {/* Shine effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+
+              <span className="relative z-10 flex items-center gap-2">
+                Subscribe
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </span>
             </button>
           </form>
           <p className="text-blue-200 text-sm mt-4">
