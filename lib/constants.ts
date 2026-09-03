@@ -79,7 +79,7 @@ export const SERVICES = [
   {
     id: "deep-cleaning",
     title: "Deep Cleaning",
-    shortDescription: "Intensive cleaning for a thorough refresh",
+    shortDescription: "Intensive cleaning for a thorough refresh. Pricing by property size, starts from £179",
     description:
       "Sometimes your space needs more than a regular clean. Our deep cleaning service reaches every corner, tackling built-up grime, limescale, and neglected areas.",
     icon: "Sparkles",
