@@ -55,6 +55,7 @@ export default function QuoteForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const [selectedService, setSelectedService] = useState("");
   const [bedrooms, setBedrooms] = useState("");
@@ -207,6 +208,7 @@ export default function QuoteForm() {
             setHours(3);
             setSelectedAddOns([]);
             setSelectedCarpetOptions([]);
+            setAgreedToTerms(false);
           }}
           className="text-primary font-medium hover:underline"
         >
@@ -558,10 +560,43 @@ export default function QuoteForm() {
         </div>
       )}
 
+      {/* Terms Agreement */}
+      <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={agreedToTerms}
+            onChange={(e) => setAgreedToTerms(e.target.checked)}
+            className="w-5 h-5 mt-0.5 text-primary border-gray-300 rounded focus:ring-primary flex-shrink-0"
+          />
+          <span className="text-sm text-gray-700">
+            I have read and agree to the{" "}
+            <a
+              href="/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Terms & Conditions
+            </a>{" "}
+            and{" "}
+            <a
+              href="/terms#cancellation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              Cancellation Policy
+            </a>
+            .
+          </span>
+        </label>
+      </div>
+
       {/* Submit button */}
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !agreedToTerms}
         className="w-full bg-primary hover:bg-primary-600 text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg"
       >
         {isSubmitting ? (
