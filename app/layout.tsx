@@ -4,10 +4,14 @@ import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import FacebookPixel from "@/components/FacebookPixel";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 import "./globals.css";
 
-// Replace with your actual Google Analytics Measurement ID (e.g., "G-XXXXXXXXXX")
+// Analytics & Tracking IDs (set these in Vercel Environment Variables)
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "";
+const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || "";
+const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cleaningapex.co.uk"),
@@ -87,8 +91,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your verification codes here
-    // google: 'your-google-verification-code',
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
   },
 };
 
@@ -204,6 +207,8 @@ export default function RootLayout({
     <html lang="en-GB">
       <head>
         <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        <FacebookPixel pixelId={FB_PIXEL_ID} />
+        <MicrosoftClarity projectId={CLARITY_PROJECT_ID} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
