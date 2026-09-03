@@ -43,7 +43,7 @@ export default function AreasPage() {
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                 From Central London to the outer boroughs and surrounding towns,
-                Cleaning Apex provides professional cleaning services to homes
+                Cleaning Apex provides professional cleaning services to areas
                 and businesses across a wide area.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
@@ -90,8 +90,8 @@ export default function AreasPage() {
               All London Boroughs Covered
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              We provide cleaning services across every London borough, from
-              Central to Outer London.
+              We provide cleaning services across different London boroughs,
+              surrounding towns and areas.
             </p>
           </div>
 
@@ -124,8 +124,7 @@ export default function AreasPage() {
               Surrounding Towns & Areas
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our coverage extends beyond London to serve homes and businesses
-              in the surrounding Home Counties.
+              Our services extends beyond London to surrounding areas.
             </p>
           </div>
 

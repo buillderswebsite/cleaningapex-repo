@@ -60,7 +60,7 @@ export default function PostcodeChecker() {
         </div>
         <div>
           <h3 className="font-bold text-gray-900 text-lg">Check Your Area</h3>
-          <p className="text-gray-500 text-sm">Enter your postcode to see if we cover your area</p>
+          <p className="text-gray-500 text-sm">Enter your postcode to see if we cover your area, then chat with us</p>
         </div>
       </div>
 
