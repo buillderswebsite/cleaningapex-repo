@@ -5,12 +5,13 @@ import { Send, CheckCircle, Loader2, Calculator } from "lucide-react";
 import { SERVICE_AREAS } from "@/lib/constants";
 
 const serviceOptions = [
-  { id: "domestic-regular", name: "Regular Domestic Cleaning", price: 23, unit: "/hour", minHours: 3 },
-  { id: "domestic-oneoff", name: "One-Off Domestic Cleaning", price: 28, unit: "/hour", minHours: 3 },
-  { id: "deep-cleaning", name: "Deep Cleaning", price: 0, unit: "fixed", minHours: 0 },
-  { id: "end-of-tenancy", name: "End of Tenancy Cleaning", price: 0, unit: "fixed", minHours: 0 },
-  { id: "commercial", name: "Commercial/Office Cleaning", price: 24, unit: "/hour", minHours: 2 },
-  { id: "carpet", name: "Carpet & Upholstery Cleaning", price: 0, unit: "fixed", minHours: 0 },
+  { id: "domestic-regular", name: "Regular Domestic Cleaning", price: 25, unit: "/hour", minHours: 2, description: "Weekly or fortnightly cleaning" },
+  { id: "domestic-contract", name: "Regular Cleaning (Contract)", price: 22, unit: "/hour", minHours: 2, description: "Discounted rate for ongoing contracts" },
+  { id: "domestic-oneoff", name: "One-Off Domestic Cleaning", price: 28, unit: "/hour", minHours: 3, description: "Single deep clean session" },
+  { id: "deep-cleaning", name: "Deep Cleaning", price: 0, unit: "fixed", minHours: 0, description: "Intensive whole-property clean" },
+  { id: "end-of-tenancy", name: "End of Tenancy Cleaning", price: 0, unit: "fixed", minHours: 0, description: "Get your deposit back" },
+  { id: "commercial", name: "Commercial/Office Cleaning", price: 0, unit: "quote", minHours: 0, description: "Tailored business solutions" },
+  { id: "carpet", name: "Carpet & Upholstery Cleaning", price: 0, unit: "fixed", minHours: 0, description: "Professional carpet care" },
 ];
 
 const bedroomPricing = {
@@ -66,6 +67,7 @@ export default function QuoteForm() {
 
   const currentService = serviceOptions.find(s => s.id === selectedService);
   const isCarpetService = selectedService === "carpet";
+  const isCommercial = selectedService === "commercial";
   const needsBedrooms = selectedService === "deep-cleaning" || selectedService === "end-of-tenancy";
 
   // Calculate price
@@ -149,9 +151,10 @@ export default function QuoteForm() {
     formData.set("selectedService", currentService?.name || "Not selected");
     formData.set("propertySize", getBedroomsLabel());
     formData.set("hoursBooked", currentService?.unit === "/hour" ? `${hours} hours` : "N/A");
-    formData.set("selectedAddOns", getSelectedAddOnsText());
+    formData.set("selectedAddOns", isCommercial ? "N/A - Commercial" : getSelectedAddOnsText());
     formData.set("carpetUpholsteryItems", getSelectedCarpetOptionsText());
-    formData.set("estimatedTotal", `£${estimatedPrice}`);
+    formData.set("estimatedTotal", isCommercial ? "Quote Required - Commercial" : `£${estimatedPrice}`);
+    formData.set("enquiryType", isCommercial ? "Commercial Quote Request" : "Booking Request");
 
     try {
       const response = await fetch("https://formspree.io/f/xvkorqwn", {
@@ -181,24 +184,31 @@ export default function QuoteForm() {
   const checkboxClasses = "w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary";
 
   if (isSubmitted) {
+    const wasCommercial = currentService?.unit === "quote";
     return (
       <div className="bg-gray-50 rounded-2xl p-8 text-center border border-gray-200">
-        <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${wasCommercial ? "bg-orange-500" : "bg-accent"}`}>
           <CheckCircle size={32} className="text-white" />
         </div>
         <h3 className="font-bold text-2xl text-gray-900 mb-2">
-          Request Received
+          {wasCommercial ? "Enquiry Received" : "Request Received"}
         </h3>
         <p className="text-gray-600 mb-2">
-          Thank you for your booking request.
+          {wasCommercial
+            ? "Thank you for your commercial cleaning enquiry."
+            : "Thank you for your booking request."
+          }
         </p>
-        {estimatedPrice > 0 && (
+        {!wasCommercial && estimatedPrice > 0 && (
           <p className="text-gray-600 mb-4">
             Estimated total: <span className="font-bold text-primary">£{estimatedPrice}</span>
           </p>
         )}
         <p className="text-gray-600 mb-6">
-          We will confirm availability and final pricing within 24 hours.
+          {wasCommercial
+            ? "We will contact you within 24 hours to arrange a free site assessment and provide a tailored quote."
+            : "We will confirm availability and final pricing within 24 hours."
+          }
         </p>
         <button
           onClick={() => {
@@ -228,13 +238,17 @@ export default function QuoteForm() {
               <Calculator size={20} />
             </div>
             <div>
-              <p className="text-xs text-blue-200 uppercase tracking-wide">Estimated Price</p>
-              <p className="text-xs text-blue-200">Final price confirmed after booking</p>
+              <p className="text-xs text-blue-200 uppercase tracking-wide">
+                {isCommercial ? "Commercial Enquiry" : "Estimated Price"}
+              </p>
+              <p className="text-xs text-blue-200">
+                {isCommercial ? "Tailored quote after site assessment" : "Final price confirmed after booking"}
+              </p>
             </div>
           </div>
           <div className="text-left sm:text-right">
             <span className="text-2xl md:text-3xl font-bold">
-              {estimatedPrice > 0 ? `£${estimatedPrice}` : "Select options"}
+              {isCommercial ? "Contact for Quote" : estimatedPrice > 0 ? `£${estimatedPrice}` : "Select options"}
             </span>
             {currentService?.unit === "/hour" && estimatedPrice > 0 && (
               <p className="text-sm text-blue-200">for {hours} hours</p>
@@ -261,6 +275,9 @@ export default function QuoteForm() {
                 setSelectedService(service.id);
                 setBedrooms("");
                 setSelectedCarpetOptions([]);
+                if (service.minHours > 0) {
+                  setHours(service.minHours);
+                }
               }}
               className={`flex flex-col items-start p-4 rounded-lg border-2 text-left transition-all ${
                 selectedService === service.id
@@ -269,14 +286,20 @@ export default function QuoteForm() {
               }`}
             >
               <span className="font-medium text-gray-900">{service.name}</span>
-              {service.price > 0 && (
-                <span className="text-sm text-primary font-semibold">
+              <span className="text-xs text-gray-500 mt-0.5">{service.description}</span>
+              {service.unit === "/hour" && (
+                <span className="text-sm text-primary font-semibold mt-1">
                   £{service.price}{service.unit} (min {service.minHours}hrs)
                 </span>
               )}
-              {service.price === 0 && (
-                <span className="text-sm text-gray-500">
-                  Price based on selection
+              {service.unit === "fixed" && (
+                <span className="text-sm text-gray-500 mt-1">
+                  Price based on property size
+                </span>
+              )}
+              {service.unit === "quote" && (
+                <span className="text-sm text-orange-600 font-semibold mt-1">
+                  Contact for tailored quote
                 </span>
               )}
             </button>
@@ -361,8 +384,39 @@ export default function QuoteForm() {
         </div>
       )}
 
+      {/* Commercial Cleaning Info */}
+      {isCommercial && (
+        <div className="bg-orange-50 border border-orange-200 rounded-xl p-6">
+          <h3 className="font-semibold text-lg text-gray-900 mb-3">2. Commercial Cleaning Enquiry</h3>
+          <p className="text-gray-700 mb-4">
+            Our commercial cleaning services are tailored to your business needs. Pricing depends on:
+          </p>
+          <ul className="text-gray-600 space-y-2 mb-4">
+            <li className="flex items-start gap-2">
+              <span className="text-orange-500 mt-1">•</span>
+              <span>Size and type of premises (office, retail, warehouse, etc.)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-500 mt-1">•</span>
+              <span>Frequency of cleaning (daily, weekly, monthly)</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-500 mt-1">•</span>
+              <span>Specific requirements and services needed</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-orange-500 mt-1">•</span>
+              <span>Contract duration and terms</span>
+            </li>
+          </ul>
+          <p className="text-gray-600 text-sm">
+            Complete the form below and we&apos;ll arrange a free site assessment to provide a tailored quote.
+          </p>
+        </div>
+      )}
+
       {/* Add-ons */}
-      {(selectedService && !isCarpetService) && (
+      {(selectedService && !isCarpetService && !isCommercial) && (
         <div className="bg-gray-50 rounded-xl p-6">
           <h3 className="font-semibold text-lg text-gray-900 mb-2">Optional Add-Ons</h3>
           <p className="text-gray-500 text-sm mb-4">Select any additional services</p>
@@ -517,19 +571,23 @@ export default function QuoteForm() {
       </div>
 
       {/* Price Summary */}
-      {estimatedPrice > 0 && (
+      {(estimatedPrice > 0 || isCommercial) && (
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-          <h3 className="font-semibold text-lg text-gray-900 mb-4">Booking Summary</h3>
+          <h3 className="font-semibold text-lg text-gray-900 mb-4">
+            {isCommercial ? "Enquiry Summary" : "Booking Summary"}
+          </h3>
           <div className="space-y-2 text-sm">
             {selectedService && (
               <div className="flex justify-between">
                 <span>{currentService?.name}</span>
                 <span className="font-medium">
-                  {currentService?.unit === "/hour"
-                    ? `£${currentService.price} x ${hours}hrs = £${currentService.price * hours}`
-                    : bedrooms
-                      ? `£${bedroomPricing[selectedService as keyof typeof bedroomPricing]?.find(p => p.beds === bedrooms)?.price}`
-                      : ""
+                  {isCommercial
+                    ? "Quote required"
+                    : currentService?.unit === "/hour"
+                      ? `£${currentService.price} x ${hours}hrs = £${currentService.price * hours}`
+                      : bedrooms
+                        ? `£${bedroomPricing[selectedService as keyof typeof bedroomPricing]?.find(p => p.beds === bedrooms)?.price}`
+                        : ""
                   }
                 </span>
               </div>
@@ -553,8 +611,10 @@ export default function QuoteForm() {
               );
             })}
             <div className="border-t border-gray-300 pt-2 mt-2 flex justify-between text-lg font-bold">
-              <span>Estimated Total</span>
-              <span className="text-primary">£{estimatedPrice}</span>
+              <span>{isCommercial ? "Price" : "Estimated Total"}</span>
+              <span className={isCommercial ? "text-orange-600" : "text-primary"}>
+                {isCommercial ? "Contact for Quote" : `£${estimatedPrice}`}
+              </span>
             </div>
           </div>
         </div>
@@ -597,7 +657,11 @@ export default function QuoteForm() {
       <button
         type="submit"
         disabled={isSubmitting || !agreedToTerms}
-        className="w-full bg-primary hover:bg-primary-600 text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg"
+        className={`w-full text-white text-lg py-4 rounded-xl font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed transition-colors shadow-lg ${
+          isCommercial
+            ? "bg-orange-500 hover:bg-orange-600"
+            : "bg-primary hover:bg-primary-600"
+        }`}
       >
         {isSubmitting ? (
           <>
@@ -607,13 +671,21 @@ export default function QuoteForm() {
         ) : (
           <>
             <Send size={20} />
-            {estimatedPrice > 0 ? `Request Booking - £${estimatedPrice}` : "Request Quote"}
+            {isCommercial
+              ? "Request Commercial Quote"
+              : estimatedPrice > 0
+                ? `Request Booking - £${estimatedPrice}`
+                : "Request Quote"
+            }
           </>
         )}
       </button>
 
       <p className="text-sm text-gray-500 text-center">
-        We will confirm availability and final pricing within 24 hours. No payment required now.
+        {isCommercial
+          ? "We will contact you within 24 hours to arrange a free site assessment."
+          : "We will confirm availability and final pricing within 24 hours. No payment required now."
+        }
       </p>
     </form>
   );
