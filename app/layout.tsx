@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollProgress from "@/components/ScrollProgress";
+import BackToTop from "@/components/BackToTop";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import FacebookPixel from "@/components/FacebookPixel";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
@@ -215,6 +217,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
+        {/* Scroll Progress Indicator */}
+        <ScrollProgress />
+
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
@@ -224,6 +229,9 @@ export default function RootLayout({
 
         {/* WhatsApp Button */}
         <WhatsAppButton />
+
+        {/* Back to Top Button */}
+        <BackToTop />
 
         {/* Mobile sticky CTA */}
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 md:hidden z-40">

@@ -1,8 +1,6 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
+import FAQAccordion from "@/components/FAQAccordion";
 import { COMPANY_INFO } from "@/lib/constants";
 
 const faqs = [
@@ -122,14 +120,6 @@ const faqs = [
 ];
 
 export default function FAQPage() {
-  const [openItems, setOpenItems] = useState<string[]>([]);
-
-  const toggleItem = (id: string) => {
-    setOpenItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
-
   return (
     <>
       {/* Page Header */}
@@ -154,41 +144,13 @@ export default function FAQPage() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">
                   {category.category}
                 </h2>
-                <div className="space-y-4">
-                  {category.questions.map((faq, qIndex) => {
-                    const itemId = `${catIndex}-${qIndex}`;
-                    const isOpen = openItems.includes(itemId);
-
-                    return (
-                      <div
-                        key={qIndex}
-                        className="bg-white rounded-xl border border-gray-200 overflow-hidden"
-                      >
-                        <button
-                          onClick={() => toggleItem(itemId)}
-                          className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
-                        >
-                          <span className="font-semibold text-gray-900 pr-4">
-                            {faq.q}
-                          </span>
-                          <ChevronDown
-                            size={20}
-                            className={`text-gray-500 flex-shrink-0 transition-transform ${
-                              isOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                        {isOpen && (
-                          <div className="px-5 pb-5">
-                            <p className="text-gray-600 leading-relaxed">
-                              {faq.a}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                <FAQAccordion
+                  variant="bordered"
+                  items={category.questions.map((faq) => ({
+                    question: faq.q,
+                    answer: faq.a,
+                  }))}
+                />
               </div>
             ))}
           </div>

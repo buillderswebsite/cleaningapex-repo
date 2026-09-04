@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import QuoteForm from "@/components/QuoteForm";
 import Map from "@/components/Map";
+import FAQAccordion from "@/components/FAQAccordion";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -187,41 +188,34 @@ export default function ContactPage() {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="heading-2 text-gray-900">
+              <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+                FAQ
+              </span>
+              <h2 className="heading-2 text-gray-900 mt-3">
                 Frequently Asked Questions
               </h2>
             </div>
 
-            <div className="space-y-6">
-              {[
+            <FAQAccordion
+              items={[
                 {
-                  q: "How quickly can you start?",
-                  a: "In most cases, we can schedule your first clean within 48-72 hours of confirming your booking. For urgent requests, same-day or next-day service may be available depending on your area.",
+                  question: "How quickly can you start?",
+                  answer: "In most cases, we can schedule your first clean within 48-72 hours of confirming your booking. For urgent requests, same-day or next-day service may be available depending on your area.",
                 },
                 {
-                  q: "What's included in the quote?",
-                  a: "Our quotes include all labour, equipment, and cleaning products. There are no hidden fees. If any additional services are recommended after our assessment, we'll always discuss this with you first.",
+                  question: "What's included in the quote?",
+                  answer: "Our quotes include all labour, equipment, and cleaning products. There are no hidden fees. If any additional services are recommended after our assessment, we'll always discuss this with you first.",
                 },
                 {
-                  q: "Do I need to be home during the clean?",
-                  a: "Not necessarily. Many of our clients provide us with keys or access codes. All our staff are fully vetted and insured, so you can trust us with access to your property.",
+                  question: "Do I need to be home during the clean?",
+                  answer: "Not necessarily. Many of our clients provide us with keys or access codes. All our staff are fully vetted and insured, so you can trust us with access to your property.",
                 },
                 {
-                  q: "What if I'm not satisfied with the clean?",
-                  a: "Your satisfaction is our priority. If you're not completely happy, let us know within 24 hours and we'll return to re-clean the areas of concern at no extra charge.",
+                  question: "What if I'm not satisfied with the clean?",
+                  answer: "Your satisfaction is our priority. If you're not completely happy, let us know within 24 hours and we'll return to re-clean the areas of concern at no extra charge.",
                 },
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
-                >
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                    {faq.q}
-                  </h3>
-                  <p className="text-gray-600">{faq.a}</p>
-                </div>
-              ))}
-            </div>
+              ]}
+            />
           </div>
         </div>
       </section>
