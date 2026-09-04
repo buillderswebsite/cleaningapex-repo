@@ -1,19 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Phone } from "lucide-react";
-import ServiceCard from "@/components/ServiceCard";
+import { ArrowRight, Phone, Home, Building2, Key, Sparkles, Briefcase, Sofa } from "lucide-react";
+import AnimatedServiceCard from "@/components/AnimatedServiceCard";
+import FAQAccordion from "@/components/FAQAccordion";
+import ImageGallery from "@/components/ImageGallery";
 import { SERVICES, COMPANY_INFO } from "@/lib/constants";
 
-export const metadata: Metadata = {
-  title: "Our Cleaning Services",
-  description:
-    "Comprehensive cleaning services for homes and businesses in London. Domestic cleaning, commercial cleaning, end of tenancy, deep cleaning, office cleaning, and carpet cleaning.",
-  openGraph: {
-    title: "Professional Cleaning Services | Cleaning Apex",
-    description:
-      "Comprehensive cleaning services for homes and businesses across London and surrounding areas.",
-  },
+const SERVICE_ICONS = {
+  domestic: Home,
+  commercial: Building2,
+  "end-of-tenancy": Key,
+  "deep-cleaning": Sparkles,
+  office: Briefcase,
+  carpet: Sofa,
 };
 
 export default function ServicesPage() {
@@ -30,12 +31,20 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services List */}
+      {/* Services List - Animated Cards */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((service) => (
-              <ServiceCard key={service.id} {...service} />
+              <AnimatedServiceCard
+                key={service.id}
+                id={service.id}
+                title={service.title}
+                description={service.shortDescription}
+                features={service.features || []}
+                icon={SERVICE_ICONS[service.id as keyof typeof SERVICE_ICONS] || Sparkles}
+                variant="reveal"
+              />
             ))}
           </div>
         </div>
@@ -56,44 +65,18 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="relative rounded-2xl overflow-hidden group">
-              <Image
-                src="/images/window-cleaning.jpg"
-                alt="Professional window cleaning"
-                width={400}
-                height={300}
-                className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
-                <p className="text-white font-semibold">Crystal Clear Windows</p>
-              </div>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden group">
-              <Image
-                src="/images/cooker-cleaning.jpg"
-                alt="Cooker and kitchen cleaning"
-                width={400}
-                height={300}
-                className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
-                <p className="text-white font-semibold">Spotless Kitchens</p>
-              </div>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden group">
-              <Image
-                src="/images/sofa-cleaning.jpg"
-                alt="Sofa and upholstery cleaning"
-                width={400}
-                height={300}
-                className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
-                <p className="text-white font-semibold">Fresh Upholstery</p>
-              </div>
-            </div>
-          </div>
+          <ImageGallery
+            columns={3}
+            showCategories={false}
+            images={[
+              { src: "/images/window-cleaning.jpg", alt: "Professional window cleaning", caption: "Crystal Clear Windows" },
+              { src: "/images/cooker-cleaning.jpg", alt: "Cooker and kitchen cleaning", caption: "Spotless Kitchens" },
+              { src: "/images/sofa-cleaning.jpg", alt: "Sofa and upholstery cleaning", caption: "Fresh Upholstery" },
+              { src: "/images/living-room-clean.jpg", alt: "Living room cleaning", caption: "Pristine Living Spaces" },
+              { src: "/images/vacuuming.jpg", alt: "Floor care and vacuuming", caption: "Thorough Floor Care" },
+              { src: "/images/dusting-tv.jpg", alt: "Dusting and surfaces", caption: "Dust-Free Surfaces" },
+            ]}
+          />
         </div>
       </section>
 
@@ -172,40 +155,30 @@ export default function ServicesPage() {
               </h2>
             </div>
 
-            <div className="space-y-6">
-              {[
+            <FAQAccordion
+              items={[
                 {
-                  q: "Do I need to provide cleaning supplies?",
-                  a: "No, we bring all the professional-grade cleaning products and equipment needed. If you prefer us to use specific eco-friendly or hypoallergenic products, just let us know.",
+                  question: "Do I need to provide cleaning supplies?",
+                  answer: "No, we bring all the professional-grade cleaning products and equipment needed. If you prefer us to use specific eco-friendly or hypoallergenic products, just let us know.",
                 },
                 {
-                  q: "Are your cleaners insured and vetted?",
-                  a: "Yes, all our cleaning staff are fully insured, background-checked, and professionally trained. Your peace of mind is our priority.",
+                  question: "Are your cleaners insured and vetted?",
+                  answer: "Yes, all our cleaning staff are fully insured, background-checked, and professionally trained. Your peace of mind is our priority.",
                 },
                 {
-                  q: "What's included in a standard domestic clean?",
-                  a: "Our domestic cleaning includes dusting, vacuuming, mopping, bathroom cleaning, kitchen cleaning (surfaces, sink, appliances exterior), and tidying. Deep cleaning of specific areas can be added on request.",
+                  question: "What's included in a standard domestic clean?",
+                  answer: "Our domestic cleaning includes dusting, vacuuming, mopping, bathroom cleaning, kitchen cleaning (surfaces, sink, appliances exterior), and tidying. Deep cleaning of specific areas can be added on request.",
                 },
                 {
-                  q: "How do you calculate your prices?",
-                  a: "Our pricing depends on the size of your property, type of service, and specific requirements. We provide transparent, itemised quotes with no hidden fees.",
+                  question: "How do you calculate your prices?",
+                  answer: "Our pricing depends on the size of your property, type of service, and specific requirements. We provide transparent, itemised quotes with no hidden fees.",
                 },
                 {
-                  q: "Can I book a one-off clean?",
-                  a: "Absolutely! While we offer regular cleaning contracts, one-off cleans are always welcome — whether it's a spring clean, post-party cleanup, or end of tenancy.",
+                  question: "Can I book a one-off clean?",
+                  answer: "Absolutely! While we offer regular cleaning contracts, one-off cleans are always welcome — whether it's a spring clean, post-party cleanup, or end of tenancy.",
                 },
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
-                >
-                  <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                    {faq.q}
-                  </h3>
-                  <p className="text-gray-600">{faq.a}</p>
-                </div>
-              ))}
-            </div>
+              ]}
+            />
           </div>
         </div>
       </section>

@@ -15,6 +15,7 @@ import Accreditations from "@/components/Accreditations";
 import GuaranteeBadge from "@/components/GuaranteeBadge";
 import ServiceCard from "@/components/ServiceCard";
 import Testimonial from "@/components/Testimonial";
+import ImageGallery from "@/components/ImageGallery";
 import { SERVICES, TESTIMONIALS, SERVICE_AREAS, COMPANY_INFO } from "@/lib/constants";
 
 export default function HomePage() {
@@ -253,34 +254,20 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[
-              { src: "/images/washing-dishes.jpg", label: "Kitchen Cleaning" },
-              { src: "/images/cooker-cleaning.jpg", label: "Cooker & Hob" },
-              { src: "/images/window-cleaning.jpg", label: "Window Cleaning" },
-              { src: "/images/dusting-tv.jpg", label: "Dusting & Surfaces" },
-              { src: "/images/dishwasher-clean.jpg", label: "Appliance Cleaning" },
-              { src: "/images/outdoor-cleaning.jpg", label: "Outdoor Spaces" },
-              { src: "/images/sofa-cleaning.jpg", label: "Upholstery Care" },
-              { src: "/images/vacuuming.jpg", label: "Floor Care" },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="group relative aspect-square rounded-xl overflow-hidden"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-white font-medium text-sm">{item.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ImageGallery
+            columns={4}
+            showCategories={true}
+            images={[
+              { src: "/images/washing-dishes.jpg", alt: "Kitchen Cleaning", caption: "Kitchen Cleaning", category: "Kitchen" },
+              { src: "/images/cooker-cleaning.jpg", alt: "Cooker & Hob", caption: "Cooker & Hob", category: "Kitchen" },
+              { src: "/images/window-cleaning.jpg", alt: "Window Cleaning", caption: "Window Cleaning", category: "General" },
+              { src: "/images/dusting-tv.jpg", alt: "Dusting & Surfaces", caption: "Dusting & Surfaces", category: "General" },
+              { src: "/images/dishwasher-clean.jpg", alt: "Appliance Cleaning", caption: "Appliance Cleaning", category: "Kitchen" },
+              { src: "/images/outdoor-cleaning.jpg", alt: "Outdoor Spaces", caption: "Outdoor Spaces", category: "Outdoor" },
+              { src: "/images/sofa-cleaning.jpg", alt: "Upholstery Care", caption: "Upholstery Care", category: "Living Room" },
+              { src: "/images/vacuuming.jpg", alt: "Floor Care", caption: "Floor Care", category: "General" },
+            ]}
+          />
         </div>
       </section>
 

@@ -10,6 +10,7 @@ import {
   Leaf,
   ThumbsUp,
 } from "lucide-react";
+import VideoTestimonials from "@/components/VideoTestimonials";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -194,6 +195,44 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Video Testimonials */}
+      <VideoTestimonials
+        title="Hear From Our Clients"
+        subtitle="Real stories from satisfied customers across London"
+        testimonials={[
+          {
+            id: "1",
+            name: "Sarah Johnson",
+            role: "Homeowner",
+            location: "Islington",
+            thumbnail: "/images/living-room-clean.jpg",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            quote: "Absolutely amazing service! My home has never looked better. The team was professional and thorough.",
+            rating: 5,
+          },
+          {
+            id: "2",
+            name: "James Mitchell",
+            role: "Property Manager",
+            location: "Camden",
+            thumbnail: "/images/kitchen-clean.jpg",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            quote: "We use Cleaning Apex for all our end of tenancy cleans. Never had a complaint from landlords.",
+            rating: 5,
+          },
+          {
+            id: "3",
+            name: "Emma Williams",
+            role: "Office Manager",
+            location: "Westminster",
+            thumbnail: "/images/office-clean.jpg",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            quote: "Our office has never been cleaner. The staff are always friendly and the results speak for themselves.",
+            rating: 5,
+          },
+        ]}
+      />
 
       {/* Team Section */}
       <section className="section-padding">
