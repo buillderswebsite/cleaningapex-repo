@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Clock, Calendar, User, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock, Calendar, User } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/blog-data";
+import SocialShare from "@/components/SocialShare";
 import type { Metadata } from "next";
 import React from "react";
 
@@ -214,19 +215,10 @@ export default async function BlogPostPage({ params }: Props) {
 
               {/* Share */}
               <div className="mt-12 pt-8 border-t border-gray-200">
-                <div className="flex items-center gap-4">
-                  <span className="text-gray-600 font-medium">Share this article:</span>
-                  <div className="flex gap-2">
-                    <a
-                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://cleaningapex.co.uk/blog/${post.slug}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full bg-gray-100 hover:bg-primary hover:text-white flex items-center justify-center transition-colors"
-                    >
-                      <Share2 size={18} />
-                    </a>
-                  </div>
-                </div>
+                <SocialShare
+                  url={`https://cleaningapex.co.uk/blog/${post.slug}`}
+                  title={post.title}
+                />
               </div>
 
               {/* CTA */}

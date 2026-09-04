@@ -11,6 +11,7 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import VideoTestimonials from "@/components/VideoTestimonials";
+import AnimatedCounter from "@/components/AnimatedCounter";
 import { COMPANY_INFO } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -178,21 +179,15 @@ export default function AboutPage() {
       {/* Stats */}
       <section className="section-padding bg-primary">
         <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "500+", label: "Happy Clients" },
-              { number: "10+", label: "Years Experience" },
-              { number: "50+", label: "Team Members" },
-              { number: "98%", label: "Satisfaction Rate" },
-            ].map((stat, index) => (
-              <div key={index}>
-                <p className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {stat.number}
-                </p>
-                <p className="text-blue-200">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          <AnimatedCounter
+            stats={[
+              { value: 500, suffix: "+", label: "Happy Clients" },
+              { value: 10, suffix: "+", label: "Years Experience" },
+              { value: 50, suffix: "+", label: "Team Members" },
+              { value: 98, suffix: "%", label: "Satisfaction Rate" },
+            ]}
+            variant="dark"
+          />
         </div>
       </section>
 

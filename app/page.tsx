@@ -16,6 +16,9 @@ import GuaranteeBadge from "@/components/GuaranteeBadge";
 import ServiceCard from "@/components/ServiceCard";
 import Testimonial from "@/components/Testimonial";
 import ImageGallery from "@/components/ImageGallery";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
+import TrustBar from "@/components/TrustBar";
 import { SERVICES, TESTIMONIALS, SERVICE_AREAS, COMPANY_INFO } from "@/lib/constants";
 
 export default function HomePage() {
@@ -23,6 +26,9 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <Hero />
+
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
       {/* Trust Badges */}
       <TrustBadges />
@@ -169,6 +175,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Before & After */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+              Transformation
+            </span>
+            <h2 className="heading-2 text-gray-900 mt-3 mb-4">
+              See the Difference
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Drag the slider to see the before and after results of our professional cleaning services.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <BeforeAfterSlider
+              beforeImage="/images/before-clean.jpg"
+              afterImage="/images/after-clean.jpg"
+              beforeLabel="Before"
+              afterLabel="After"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Service Areas */}
       <section className="section-padding bg-primary text-white">
         <div className="container-custom">
@@ -271,10 +303,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials Carousel */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="text-primary font-semibold text-sm uppercase tracking-wider">
               Testimonials
             </span>
@@ -287,10 +319,49 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {TESTIMONIALS.map((testimonial) => (
-              <Testimonial key={testimonial.id} {...testimonial} />
-            ))}
+          <div className="max-w-4xl mx-auto">
+            <TestimonialCarousel
+              testimonials={[
+                {
+                  id: "1",
+                  name: "Sarah Johnson",
+                  role: "Homeowner",
+                  location: "Islington",
+                  content: "Absolutely fantastic service! The team arrived on time, were incredibly thorough, and left my home sparkling clean. I've been using Cleaning Apex for 6 months now and wouldn't go anywhere else.",
+                  rating: 5,
+                  image: "/images/testimonial-1.jpg",
+                },
+                {
+                  id: "2",
+                  name: "James Mitchell",
+                  role: "Property Manager",
+                  location: "Camden",
+                  content: "We use Cleaning Apex for all our end of tenancy cleans across multiple properties. Never had a single complaint from landlords or new tenants. Professional, reliable, and excellent value.",
+                  rating: 5,
+                  image: "/images/testimonial-2.jpg",
+                },
+                {
+                  id: "3",
+                  name: "Emma Williams",
+                  role: "Office Manager",
+                  location: "Westminster",
+                  content: "Our office has never looked better. The cleaning team is always friendly, respects our space, and the results speak for themselves. Highly recommend for any business!",
+                  rating: 5,
+                  image: "/images/testimonial-3.jpg",
+                },
+                {
+                  id: "4",
+                  name: "David Chen",
+                  role: "Restaurant Owner",
+                  location: "Southwark",
+                  content: "Finding reliable commercial cleaners was a nightmare until we found Cleaning Apex. They understand the unique needs of food service businesses and deliver exceptional results every time.",
+                  rating: 5,
+                  image: "/images/testimonial-4.jpg",
+                },
+              ]}
+              autoPlay={true}
+              interval={6000}
+            />
           </div>
         </div>
       </section>

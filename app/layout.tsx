@@ -5,6 +5,10 @@ import CookieConsent from "@/components/CookieConsent";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
+import PageLoader from "@/components/PageLoader";
+import UrgencyBanner from "@/components/UrgencyBanner";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import FacebookPixel from "@/components/FacebookPixel";
 import MicrosoftClarity from "@/components/MicrosoftClarity";
@@ -217,12 +221,29 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col">
+        {/* Page Loading Indicator */}
+        <PageLoader />
+
         {/* Scroll Progress Indicator */}
         <ScrollProgress />
 
+        {/* Urgency Banner */}
+        <UrgencyBanner
+          message="Limited Time: 15% OFF your first clean!"
+          ctaText="Book Now"
+          ctaLink="/contact"
+        />
+
         <Header />
+
+        {/* Breadcrumbs */}
+        <Breadcrumbs />
+
         <main className="flex-grow">{children}</main>
         <Footer />
+
+        {/* Exit Intent Popup */}
+        <ExitIntentPopup />
 
         {/* Cookie Consent Banner */}
         <CookieConsent />
