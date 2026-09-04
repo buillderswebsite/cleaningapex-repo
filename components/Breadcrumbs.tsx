@@ -16,6 +16,8 @@ const pathNameMap: Record<string, string> = {
   terms: "Terms of Service",
   cookies: "Cookie Policy",
   accessibility: "Accessibility",
+  cleaning: "Cleaning Services",
+  "sitemap-page": "Sitemap",
 };
 
 export default function Breadcrumbs() {
@@ -33,37 +35,63 @@ export default function Breadcrumbs() {
     return { href, label, isLast };
   });
 
-  return (
-    <nav aria-label="Breadcrumb" className="bg-gray-50 border-b border-gray-100">
-      <div className="container-custom py-3">
-        <ol className="flex items-center flex-wrap gap-2 text-sm">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors"
-            >
-              <Home size={14} />
-              <span>Home</span>
-            </Link>
-          </li>
+  // BreadcrumbList Schema for SEO
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://cleaningapex.co.uk",
+      },
+      ...breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: crumb.label,
+        item: `https://cleaningapex.co.uk${crumb.href}`,
+      })),
+    ],
+  };
 
-          {breadcrumbs.map((crumb, index) => (
-            <li key={index} className="flex items-center gap-2">
-              <ChevronRight size={14} className="text-gray-400" />
-              {crumb.isLast ? (
-                <span className="text-gray-900 font-medium">{crumb.label}</span>
-              ) : (
-                <Link
-                  href={crumb.href}
-                  className="text-gray-500 hover:text-primary transition-colors"
-                >
-                  {crumb.label}
-                </Link>
-              )}
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <nav aria-label="Breadcrumb" className="bg-gray-50 border-b border-gray-100">
+        <div className="container-custom py-3">
+          <ol className="flex items-center flex-wrap gap-2 text-sm">
+            <li>
+              <Link
+                href="/"
+                className="flex items-center gap-1 text-gray-500 hover:text-primary transition-colors"
+              >
+                <Home size={14} />
+                <span>Home</span>
+              </Link>
             </li>
-          ))}
-        </ol>
-      </div>
-    </nav>
+
+            {breadcrumbs.map((crumb, index) => (
+              <li key={index} className="flex items-center gap-2">
+                <ChevronRight size={14} className="text-gray-400" />
+                {crumb.isLast ? (
+                  <span className="text-gray-900 font-medium">{crumb.label}</span>
+                ) : (
+                  <Link
+                    href={crumb.href}
+                    className="text-gray-500 hover:text-primary transition-colors"
+                  >
+                    {crumb.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+    </>
   );
 }

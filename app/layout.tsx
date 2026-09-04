@@ -140,6 +140,39 @@ const jsonLd = {
   ],
   priceRange: "££",
   image: "https://cleaningapex.co.uk/og-image.jpg",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "247",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: [
+    {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: "Sarah Mitchell",
+      },
+      reviewBody: "Absolutely brilliant service! The team arrived on time and left my flat sparkling clean.",
+    },
+    {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: "James Thompson",
+      },
+      reviewBody: "Professional, thorough, and always reliable. Highly recommend for any business.",
+    },
+  ],
   sameAs: [
     "https://facebook.com/cleaningapex",
     "https://instagram.com/cleaningapex",

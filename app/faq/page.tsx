@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone, MessageCircle } from "lucide-react";
 import FAQAccordion from "@/components/FAQAccordion";
 import { COMPANY_INFO } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "FAQ | Frequently Asked Questions",
+  description: "Find answers to common questions about Cleaning Apex services, booking, pricing, and policies. Professional cleaning services in London.",
+};
 
 const faqs = [
   {
@@ -120,8 +126,30 @@ const faqs = [
 ];
 
 export default function FAQPage() {
+  // Generate FAQ Schema from all questions
+  const allFaqs = faqs.flatMap((category) =>
+    category.questions.map((q) => ({
+      "@type": "Question",
+      name: q.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: q.a,
+      },
+    }))
+  );
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: allFaqs,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Page Header */}
       <section className="bg-gradient-to-br from-primary to-primary-700 py-20">
         <div className="container-custom text-center">

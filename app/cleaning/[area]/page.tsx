@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Phone, CheckCircle, Star } from "lucide-react";
 import { SERVICES, COMPANY_INFO } from "@/lib/constants";
 
-// Area data
+// Area data - All London boroughs
 const AREA_DATA: Record<string, { name: string; description: string; postcodes: string[] }> = {
   hackney: {
     name: "Hackney",
@@ -34,6 +34,121 @@ const AREA_DATA: Record<string, { name: string; description: string; postcodes: 
     name: "Southwark",
     description: "Professional cleaners in Southwark, South London. Covering SE1, SE5, SE15, SE17, and SE22.",
     postcodes: ["SE1", "SE5", "SE15", "SE17", "SE22"],
+  },
+  lewisham: {
+    name: "Lewisham",
+    description: "Quality cleaning services in Lewisham, South East London. Covering SE4, SE6, SE12, SE13, and SE14.",
+    postcodes: ["SE4", "SE6", "SE12", "SE13", "SE14"],
+  },
+  "tower-hamlets": {
+    name: "Tower Hamlets",
+    description: "Professional cleaning in Tower Hamlets, East London. Serving E1, E2, E3, E14, and E1W areas.",
+    postcodes: ["E1", "E2", "E3", "E14", "E1W"],
+  },
+  lambeth: {
+    name: "Lambeth",
+    description: "Expert cleaning services in Lambeth, South London. Covering SE11, SE24, SE27, SW2, SW4, and SW9.",
+    postcodes: ["SE11", "SE24", "SE27", "SW2", "SW4", "SW9"],
+  },
+  wandsworth: {
+    name: "Wandsworth",
+    description: "Reliable cleaning services in Wandsworth, South West London. Serving SW11, SW12, SW15, SW17, and SW18.",
+    postcodes: ["SW11", "SW12", "SW15", "SW17", "SW18"],
+  },
+  "hammersmith-fulham": {
+    name: "Hammersmith & Fulham",
+    description: "Quality cleaning in Hammersmith and Fulham, West London. Covering W6, W12, W14, SW6, and W3.",
+    postcodes: ["W6", "W12", "W14", "SW6", "W3"],
+  },
+  "kensington-chelsea": {
+    name: "Kensington & Chelsea",
+    description: "Premium cleaning services in Kensington and Chelsea. Serving SW3, SW5, SW7, SW10, W8, and W11.",
+    postcodes: ["SW3", "SW5", "SW7", "SW10", "W8", "W11"],
+  },
+  newham: {
+    name: "Newham",
+    description: "Affordable cleaning services in Newham, East London. Covering E6, E7, E12, E13, E15, and E16.",
+    postcodes: ["E6", "E7", "E12", "E13", "E15", "E16"],
+  },
+  "barking-dagenham": {
+    name: "Barking & Dagenham",
+    description: "Professional cleaning in Barking and Dagenham. Serving IG11 and RM postcodes.",
+    postcodes: ["IG11", "RM8", "RM9", "RM10"],
+  },
+  bexley: {
+    name: "Bexley",
+    description: "Trusted cleaning services in Bexley, South East London. Covering DA5, DA6, DA7, DA14, DA15, and DA16.",
+    postcodes: ["DA5", "DA6", "DA7", "DA14", "DA15", "DA16"],
+  },
+  bromley: {
+    name: "Bromley",
+    description: "Expert cleaning services in Bromley, South London. Serving BR1, BR2, BR3, BR4, BR5, and BR6.",
+    postcodes: ["BR1", "BR2", "BR3", "BR4", "BR5", "BR6"],
+  },
+  croydon: {
+    name: "Croydon",
+    description: "Quality cleaning services in Croydon, South London. Covering CR0, CR2, CR7, and CR9 postcodes.",
+    postcodes: ["CR0", "CR2", "CR7", "CR9"],
+  },
+  sutton: {
+    name: "Sutton",
+    description: "Reliable cleaning services in Sutton, South London. Serving SM1, SM2, SM3, SM5, and SM6.",
+    postcodes: ["SM1", "SM2", "SM3", "SM5", "SM6"],
+  },
+  merton: {
+    name: "Merton",
+    description: "Professional cleaners in Merton, South West London. Covering SW19, SW20, CR4, and SM4.",
+    postcodes: ["SW19", "SW20", "CR4", "SM4"],
+  },
+  kingston: {
+    name: "Kingston upon Thames",
+    description: "Expert cleaning services in Kingston, South West London. Serving KT1, KT2, KT3, and KT5.",
+    postcodes: ["KT1", "KT2", "KT3", "KT5"],
+  },
+  richmond: {
+    name: "Richmond upon Thames",
+    description: "Premium cleaning in Richmond, South West London. Covering TW1, TW2, TW9, TW10, and SW14.",
+    postcodes: ["TW1", "TW2", "TW9", "TW10", "SW14"],
+  },
+  hounslow: {
+    name: "Hounslow",
+    description: "Quality cleaning services in Hounslow, West London. Serving TW3, TW4, TW5, TW7, and TW8.",
+    postcodes: ["TW3", "TW4", "TW5", "TW7", "TW8"],
+  },
+  ealing: {
+    name: "Ealing",
+    description: "Trusted cleaning services in Ealing, West London. Covering W5, W7, W13, UB1, and UB6.",
+    postcodes: ["W5", "W7", "W13", "UB1", "UB6"],
+  },
+  brent: {
+    name: "Brent",
+    description: "Professional cleaning in Brent, North West London. Serving NW2, NW6, NW9, NW10, and HA9.",
+    postcodes: ["NW2", "NW6", "NW9", "NW10", "HA9"],
+  },
+  harrow: {
+    name: "Harrow",
+    description: "Expert cleaning services in Harrow, North West London. Covering HA1, HA2, HA3, HA5, and HA7.",
+    postcodes: ["HA1", "HA2", "HA3", "HA5", "HA7"],
+  },
+  barnet: {
+    name: "Barnet",
+    description: "Quality cleaning services in Barnet, North London. Serving EN4, EN5, N2, N3, N11, N12, and NW7.",
+    postcodes: ["EN4", "EN5", "N2", "N3", "N11", "N12", "NW7"],
+  },
+  haringey: {
+    name: "Haringey",
+    description: "Reliable cleaning services in Haringey, North London. Covering N4, N6, N8, N10, N15, N17, and N22.",
+    postcodes: ["N4", "N6", "N8", "N10", "N15", "N17", "N22"],
+  },
+  enfield: {
+    name: "Enfield",
+    description: "Professional cleaning in Enfield, North London. Serving EN1, EN2, EN3, N9, N13, N14, and N21.",
+    postcodes: ["EN1", "EN2", "EN3", "N9", "N13", "N14", "N21"],
+  },
+  "waltham-forest": {
+    name: "Waltham Forest",
+    description: "Trusted cleaning services in Waltham Forest, East London. Covering E4, E10, E11, and E17.",
+    postcodes: ["E4", "E10", "E11", "E17"],
   },
 };
 
@@ -80,8 +195,33 @@ export default async function AreaPage({ params }: Props) {
     );
   }
 
+  // JSON-LD Schema for Local Business in this area
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: `Cleaning Apex - ${areaInfo.name}`,
+    description: areaInfo.description,
+    url: `https://cleaningapex.co.uk/cleaning/${area}`,
+    telephone: COMPANY_INFO.phone,
+    email: COMPANY_INFO.email,
+    areaServed: {
+      "@type": "City",
+      name: areaInfo.name,
+    },
+    priceRange: "££",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "127",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary to-primary-700 py-20">
         <div className="container-custom">
